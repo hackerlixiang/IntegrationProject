@@ -81,7 +81,7 @@ public class UserController extends BaseSystemController{
 		
 		//用户Bean验证
 		if(!valid(userBean)){
-			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.USER_ADD);
+			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.USER_PARAM_ERROR);
 		}
 		//添加用户
 		return userService.save(userBean);

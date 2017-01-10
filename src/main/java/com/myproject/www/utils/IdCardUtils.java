@@ -387,14 +387,20 @@ public class IdCardUtils {
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
      */
-    public static String getBirthByIdCard(String idCard) {
+    public static Date getBirthByIdCard(String idCard) {
         Integer len = idCard.length();
         if (len < CHINA_ID_MIN_LENGTH) {
             return null;
         } else if (len == CHINA_ID_MIN_LENGTH) {
             idCard = conver15CardTo18(idCard);
         }
-        return idCard.substring(6, 14);
+        String birthdayStr = idCard.substring(6, 14);
+        try {
+			return DateUtils.parseDate(birthdayStr, DateUtils.yMd1);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        return null;
     }
     
     /**

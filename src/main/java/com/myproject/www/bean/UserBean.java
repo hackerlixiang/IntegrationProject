@@ -1,5 +1,7 @@
 package com.myproject.www.bean;
 
+import java.util.Date;
+
 import com.myproject.www.utils.validate.RegexType;
 import com.myproject.www.utils.validate.annon.Validate;
 
@@ -8,7 +10,7 @@ public class UserBean extends BaseBean {
 	@Validate(minLength=6,maxLength=15)
 	private String username;
 
-	@Validate(minLength=6,maxLength=15,regexExpression = "^([a-z]|[A-Z]|[0-9])$")
+	@Validate(minLength=6,maxLength=15,regexExpression = "^(?![^A-Za-z]+$)(?![^0-9]+$)[0-9a-zA-Z_]+$")
 	private String password;
 
 	@Validate(regexType = RegexType.CHINESE)
@@ -18,7 +20,7 @@ public class UserBean extends BaseBean {
 	private String nickName;
 	
 	/** 生日 */
-	private String birthday;
+	private Date birthday;
 
 	/** 年龄 */
 	@Validate(regexType = RegexType.NUMBER)
@@ -84,11 +86,11 @@ public class UserBean extends BaseBean {
 		this.nickName = nickName;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

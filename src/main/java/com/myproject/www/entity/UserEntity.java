@@ -1,5 +1,7 @@
 package com.myproject.www.entity;
 
+import java.util.Date;
+
 /**
  * 用户实体
  * 
@@ -23,7 +25,7 @@ public class UserEntity extends BaseEntity {
 	private String nickName;
 	
 	/** 生日 */
-	private String birthday;
+	private Date birthday;
 
 	/** 年龄 */
 	private Integer age;
@@ -84,11 +86,11 @@ public class UserEntity extends BaseEntity {
 		this.nickName = nickName;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

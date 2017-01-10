@@ -26,7 +26,7 @@ public class UserTest {
 	public void addTest() throws Exception {
 		UserBean userBean = new UserBean();
 		userBean.setUsername("lx02788");
-		userBean.setPassword("0276871LX");
+		userBean.setPassword("02768LX");
 		userBean.setName("阿萨德");
 		userBean.setNickName("~A屌屌屌A~");
 		userBean.setIdCard("510124199107034911");
@@ -43,21 +43,18 @@ public class UserTest {
 		}
 	}
 	
-//	public static void main(String[] args) {
-//		String idCard = "510124199107034911";
-//		System.out.println(IdCardUtils.validateCard(idCard));
-//		System.out.println(IdCardUtils.getAgeByIdCard(idCard));
-//		System.out.println(IdCardUtils.getBirthByIdCard(idCard));
-//		System.out.println(IdCardUtils.getProvinceByIdCard(idCard));
-//		System.out.println(IdCardUtils.getGenderByIdCard(idCard));
-//		System.out.println(IdCardUtils.getDateByIdCard(idCard));
-//		System.out.println(IdCardUtils.getMonthByIdCard(idCard));
-//		System.out.println(IdCardUtils.getYearByIdCard(idCard));
-//		
-//		System.out.println(DigestUtils.md5Hex("abcd"));
-//	}
-	
 	public static void main(String[] args) {
-		System.out.println("hello world");
+		String idCard = "510124199107034911";
+		System.out.println(IdCardUtils.validateCard(idCard));
+		System.out.println(IdCardUtils.getAgeByIdCard(idCard));
+		System.out.println(IdCardUtils.getBirthByIdCard(idCard));
+		System.out.println(IdCardUtils.getProvinceByIdCard(idCard));
+		System.out.println(IdCardUtils.getGenderByIdCard(idCard));
+		System.out.println(IdCardUtils.getDateByIdCard(idCard));
+		System.out.println(IdCardUtils.getMonthByIdCard(idCard));
+		System.out.println(IdCardUtils.getYearByIdCard(idCard));
+		
+		System.out.println(DigestUtils.md5Hex("abcd"));
 	}
+	
 }

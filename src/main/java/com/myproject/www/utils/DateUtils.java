@@ -11,7 +11,8 @@ import java.util.Date;
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils{
 	
-	public static final String yMdHms = "yyyy-MM-dd HH:mm:ss";
+	public static final String yMdHms1 = "yyyy-MM-dd HH:mm:ss";
+	public static final String yMd1 = "yyyyMMdd";
 	
 	/**
      * 不可实例化
@@ -25,7 +26,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils{
      * @return 格式化后时间对象字符串
      */
     public static String formateDate(Date date){
-    	return formateDate(date,yMdHms);
+    	return formateDate(date,yMdHms1);
     }
     
     /**

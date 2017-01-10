@@ -16,9 +16,15 @@ public interface MessageAlias {
 	public static final String MENU_UPDATE_FAILURE = "MenuUpdateFailure";
 	
 	/* -----------------------------------------------------------用户提示消息--------------------------------------------------------------------- */
-	public static final String USER_ADD = "UserAdd.";
-	public static final String USER_UPDATE = "UserUpdate.";
-	public static final String USER_DELETE = "UserDelete.";
+	public static final String USER_PARAM_ERROR = "UserParamError";
+	
+	public static final String USER_ADD_SUCCESS = "UserAddSuccess";
+	public static final String USER_DELETE_SUCCESS = "UserDeleteSuccess";
+	public static final String USER_UPDATE_SUCCESS = "UserUpdateSuccess";
+	                           
+	public static final String USER_ADD_FAILURE = "UserAddFailure";
+	public static final String USER_DELETE_FAILURE = "UserDeleteFailure";
+	public static final String USER_UPDATE_FAILURE = "UserUpdateFailure";
 
 	/* ----------------------------------------------------------数据字典提示消息-------------------------------------------------------------------- */
 	public static final String DATA_DICTIONARY_ADD_SUCCESS = "DataDictionaryAddSuccess";

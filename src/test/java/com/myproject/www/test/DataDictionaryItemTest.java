@@ -22,8 +22,8 @@ public class DataDictionaryItemTest {
 	@Test
 	public void addTest() throws Exception {
 		DataDictionaryItemBean dataDictionaryItemBean = new DataDictionaryItemBean();
-		dataDictionaryItemBean.setCode("SECRECY");
-		dataDictionaryItemBean.setName("保密");
+		dataDictionaryItemBean.setCode("WOMAN");
+		dataDictionaryItemBean.setName("女");
 		dataDictionaryItemBean.setDataDictionaryId(1L);
 		System.out.println(ValidateUtils.valid(dataDictionaryItemBean));
 		dataDictionaryItemService.save(dataDictionaryItemBean);
