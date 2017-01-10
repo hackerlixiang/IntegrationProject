@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-lazy-init="true">
+
+	<!-- 权限认证 -->
+	<!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的AuthenticationRealm.java -->  
+	<bean id="authenticationRealm" class="com.myproject.www.shiro.AuthenticationRealm">
+		<property name="authorizationCacheName" value="authorization" />
+	</bean>
+	
+	<!-- WEB安全管理器 -->
+	<!-- Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session -->  
+	<!-- 即<property name="sessionMode" value="native"/>,详细说明见官方文档 -->  
+	<!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->  
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authenticationRealm" />
+		<property name="cacheManager" ref="shiroCacheManager" />
+	</bean>
+
+	<!-- 缓存管理 -->
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<!-- 权限认证过滤器 -->
+	<bean id="authenticationFilter" class="com.myproject.www.shiro.AuthenticationFilter" />
+
+	<!-- 函数调用工厂 -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager" />
+		<property name="arguments" ref="securityManager" />
+	</bean>
+
+	<!-- Shiro 过滤器 -->
+	<!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->  
+	<!-- Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		
+		<!-- Shiro的核心安全接口,这个属性是必须的 -->  
+		<property name="securityManager" ref="securityManager" />
+		<!-- 登录URL -->
+		<!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+		<!-- <property name="loginUrl" value="/admin/login" /> -->
+		
+		<!-- 登录成功URL -->
+    	<!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->  
+		<!-- <property name="successUrl" value="#{servletContext.contextPath}/admin" /> -->
+		
+		<!-- 无权访问URL -->
+		<!-- <property name="unauthorizedUrl" value="/admin/unauthorized" /> -->
+		
+		<!-- 过滤器定义 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- anon 没有参数，表示可以匿名使用 -->
+				<!-- authc 表示需要认证才能使用，没有参数 -->
+				<!-- perms 参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割 -->
+				<!-- /admin/captcha = anon
+				/admin/login = authc
+				/admin/logout = logout
+				
+				/admin/area/jsons = authc
+				/admin/article_category/jsons = authc
+				/admin/bank_branch/jsons = authc
+
+				/admin/experience_setting/** = perms["admin:experience_setting"]
+				/admin/basic_setting/** = perms["admin:basic_setting"]
+				/admin/security_setting/** = perms["admin:security_setting"]
+				/admin/display_setting/** = perms["admin:display_setting"]
+				/admin/comm_setting/** = perms["admin:comm_setting"]
+				/admin/referral_setting/** = perms["admin:referral_setting"]
+				/admin/coupon_setting/** = perms["admin:coupon_setting"]
+				/admin/payment_plugin/** = perms["admin:payment_plugin"]
+				/admin/storage_plugin/** = perms["admin:storage_plugin"]
+				/admin/texting_plugin/** = perms["admin:texting_plugin"]
+				/admin/admin/** = perms["admin:admin"]
+				/admin/role/** = perms["admin:role"]
+				/admin/area/** = perms["admin:area"]
+				/admin/bank/** = perms["admin:bank"]
+				/admin/bank_branch/** = perms["admin:bank"]
+				/admin/dict/** = perms["admin:dict"]
+				/admin/dict_word/** = perms["admin:dict"]
+				/admin/template/page/** = perms["admin:template_page"]
+				/admin/template/mail/** = perms["admin:template_mail"]
+				/admin/template/texting/** = perms["admin:template_texting"]
+				/admin/template/print/** = perms["admin:template_print"]
+				/admin/template/js/** = perms["admin:template_js"]
+				/admin/template/css/** = perms["admin:template_css"]
+				/admin/cache/** = perms["admin:cache"]
+				/admin/log/** = perms["admin:log"]
+				/admin/token/** = perms["admin:token"]
+				/admin/database/** = perms["admin:database"]
+				
+				/admin/article_category/** = perms["admin:article_category"]
+				/admin/article/** = perms["admin:article"]
+				/admin/comment/** = perms["admin:comment"]
+				/admin/ad_position/** = perms["admin:ad_position"]
+				/admin/ad/** = perms["admin:ad"]
+				/admin/friend_link/text/** = perms["admin:friend_link_text"]
+				/admin/friend_link/image/** = perms["admin:friend_link_image"]
+				
+				/admin/account/** = perms["admin:account"]
+				/admin/experience_amount/** = perms["admin:experience_amount"]
+				/admin/capital/** = perms["admin:capital"]
+				/admin/platform_capital/** = perms["admin:platform_capital"]
+				/admin/investment/** = perms["admin:investment"]
+				/admin/recharge/** = perms["admin:recharge"]
+				/admin/recharge_modif/** = perms["admin:recharge_modif"]
+				/admin/recharge_audit/** = perms["admin:recharge_audit"]
+				/admin/recharge_transfer/** = perms["admin:recharge_transfer"]
+				/admin/recharge_cancel/** = perms["admin:recharge_cancel"]
+				/admin/recharge_remedy/** = perms["admin:recharge_remedy"]
+				/admin/withdrawal/** = perms["admin:withdrawal"]
+				/admin/withdrawal_modif/** = perms["admin:withdrawal_modif"]
+				/admin/withdrawal_audit/** = perms["admin:withdrawal_audit"]
+				/admin/withdrawal_transfer/** = perms["admin:withdrawal_transfer"]
+				/admin/withdrawal_cancel/** = perms["admin:withdrawal_cancel"]
+				/admin/withdrawal_remedy/** = perms["admin:withdrawal_remedy"]
+				/admin/bank_card/** = perms["admin:bank_card"]
+				/admin/bank_card_modif/** = perms["admin:bank_card_modif"]
+				/admin/bank_card_audit/** = perms["admin:bank_card_audit"]
+				/admin/bank_card_invalid/** = perms["admin:bank_card_invalid"]
+				/admin/bank_card_remedy/** = perms["admin:bank_card_remedy"]
+				
+				/admin/member/** = perms["admin:member"]
+				/admin/pers/** = perms["admin:pers"]
+				/admin/pers_regist/** = perms["admin:pers_regist"]
+				/admin/pers_modif/** = perms["admin:pers_modif"]
+				/admin/corp/** = perms["admin:corp"]
+				/admin/corp_modif/** = perms["admin:corp_modif"]
+				/admin/coupon/** = perms["admin:coupon"]
+				/admin/coupon_code/** = perms["admin:coupon_code"]
+				/admin/referrer_relation/** = perms["admin:referrer_relation"]
+				/admin/referrer/** = perms["admin:referrer"]
+				/admin/referral/** = perms["admin:referral"]
+				/admin/referral_fee/** = perms["admin:referral_fee"]
+				/admin/auto_investment/** = perms["admin:auto_investment"]
+				
+				/admin/assignment_apply/** = perms["admin:assignment_apply"]
+				/admin/assignment_inquiry/** = perms["admin:assignment_inquiry"]
+				/admin/assignment_confirm/** = perms["admin:assignment_confirm"]
+				/admin/assignment_previewing/** = perms["admin:assignment_previewing"]
+				/admin/assignment_investing/** = perms["admin:assignment_investing"]
+				/admin/assignment_invest_expired/** = perms["admin:assignment_invest_expired"]
+				/admin/assignment_buybacking/** = perms["admin:assignment_buybacking"]
+				/admin/assignment_finished/** = perms["admin:assignment_finished"]
+				/admin/buyback_plan/** = perms["admin:assignment_buyback"]
+				/admin/assignment_inquiry_failure/** = perms["admin:assignment_inquiry_failure"]
+				/admin/assignment_confirm_failure/** = perms["admin:assignment_confirm_failure"]
+				/admin/assignment_invest_failure/** = perms["admin:assignment_invest_failure"]
+				
+				/admin/borrowing_apply/** = perms["admin:borrowing_apply"]
+				/admin/borrowing_inquiry/** = perms["admin:borrowing_inquiry"]
+				/admin/borrowing_confirm/** = perms["admin:borrowing_confirm"]
+				/admin/borrowing_previewing/** = perms["admin:borrowing_previewing"]
+				/admin/borrowing_investing/** = perms["admin:borrowing_investing"]
+				/admin/borrowing_invest_expired/** = perms["admin:borrowing_invest_expired"]
+				/admin/borrowing_lend/** = perms["admin:borrowing_lend"]
+				/admin/borrowing_repaying/** = perms["admin:borrowing_repaying"]
+				/admin/borrowing_finished/** = perms["admin:borrowing_finished"]
+				/admin/repayment_plan/** = perms["admin:borrowing_repay"]
+				/admin/borrowing_inquiry_failure/** = perms["admin:borrowing_inquiry_failure"]
+				/admin/borrowing_confirm_failure/** = perms["admin:borrowing_confirm_failure"]
+				/admin/borrowing_invest_failure/** = perms["admin:borrowing_invest_failure"]
+				/admin/borrowing_lend_failure/** = perms["admin:borrowing_lend_failure"]
+
+				/admin/** = authc -->
+			</value>
+		</property>
+		<property name="filters">
+			<map>
+				<entry key="authc" value-ref="authenticationFilter" />
+			</map>
+		</property>
+	</bean>
+	
+</beans>

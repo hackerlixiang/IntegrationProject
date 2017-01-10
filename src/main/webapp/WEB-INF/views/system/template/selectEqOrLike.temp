@@ -1,0 +1,13 @@
+<script id="eqOrLikeTemplate" type="text/template">
+	<span class="input-group-btn">
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		     	<span value="eq" class="describe">精确查询</span>
+		     	<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="javascript:;" value="like">模糊查询</a></li>
+		  </ul>
+		</div>
+	</span>
+</script>

@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>菜单</title>
+
+[#--引入CSS--]
+<link href="/assets/tools/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+[#--list--]
+[#include "/system/include/css/list_css.html"/]
+</head>
+<body>
+	<div class="container-fluid">
+		[#--定义数据列表--]
+		<table  id="datas" class="display cell-border stripe hover dtextend" cellspacing="0" width="100%">
+	        <thead>
+	            <tr>
+	                <th>ID</th>
+	                <th>创建时间</th>
+	                <th>修改时间</th>
+	                <th>用户名</th>
+	                <th>密码</th>
+	            </tr>
+	        </thead>
+	        <tfoot>
+	            <tr>
+	                <th>ID</th>
+	                <th>创建时间</th>
+	                <th>修改时间</th>
+	                <th>用户名</th>
+	                <th>密码</th>
+	            </tr>
+	        </tfoot>
+	    </table>
+    </div>
+    [#--引入查询表单--]
+    [#include "/system/menu/query.html"/]
+    
+    [#--引入模板--]
+    [#include "/system/template/dataTable.button.temp"/]
+    [#include "/system/template/selectEqOrLike.temp"/]
+	
+	[#--引入JS--]
+	<script type="text/javascript" src="/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+	[#--list--]
+	[#include "/system/include/js/list_js.html"/]
+	
+	[#--定义dataTables--]
+	<script type="text/javascript">
+		$(function(){
+			var dataTable = $('#datas').DataTable( {
+				"aoColumns": [
+					{"data": "id", "sType": "string"},
+					{"data": "createDate", "sType": "string"},
+					{"data": "updateDate", "sType": "string"},
+					{"data": "username", "sType": "string","orderable": false},
+					{"data": "password", "sType": "string","orderable": false}
+		        ],
+		        "ajax": {
+		            "url": "/system/user/getData",
+		            "type": "POST",
+		            "dataSrc": "data",
+		            "data": function(d){
+		            	formateParmas(d);
+		            }
+		        }
+		    });
+			
+		});
+	</script>	
+</body>
+</html>

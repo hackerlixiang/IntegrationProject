@@ -1,0 +1,72 @@
+<div class="page-sidebar nav-collapse collapse">
+
+	<!-- BEGIN SIDEBAR MENU -->        
+	<ul class="page-sidebar-menu">
+		<li>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<div class="sidebar-toggler hidden-phone"></div>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		</li>
+		<li>
+			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+			<form class="sidebar-search">
+				<div class="input-box">
+					<a href="javascript:;" class="remove"></a>
+					<input type="text" placeholder="Search..." />
+					<input type="button" class="submit" value=" " />
+				</div>
+			</form>
+			<!-- END RESPONSIVE QUICK SEARCH FORM -->
+		</li>
+
+		<li class="start">
+			<a href="index.html">
+				<i class="icon-home"></i> 
+				<span class="title">Dashboard</span>
+			</a>
+		</li>
+
+		<li>
+			<a href="javascript:;">
+				<i class="icon-th-large"></i> 
+				<span class="title">菜单管理</span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="/system/menu/add" target="mainFrame">添加菜单</a></li>
+				<li><a href="/system/menu/list" target="mainFrame">菜单列表</a></li>
+				<li><a href="/test" target="mainFrame">菜单列表测试</a></li>
+			</ul>
+		</li>
+		
+		<li class="active">
+			<a href="javascript:;">
+				<i class="icon-th-large"></i> 
+				<span class="title">用户管理</span>
+				<span class="selected"></span>
+				<span class="arrow open"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="/system/user/add" target="mainFrame">添加用户</a></li>
+				<li class="active"><a href="/system/user/list" target="mainFrame">用户列表</a></li>
+			</ul>
+		</li>
+		
+		[#list menus as menu]
+		<li>
+			<a href="javascript:;">
+				<i class="${menu.icon!}"></i> 
+				<span class="title">${menu.name}</span>
+			</a>
+			[#if menu.childrens?size>0]
+			<ul class="sub-menu">
+				[#list menu.childrens as chilren]
+				<li><a href="/system/menu/add" target="mainFrame">${chilren.name}</a></li>
+				[/#list]
+			</ul>
+			[/#if]
+		</li>
+		[/#list]
+	</ul>
+	<!-- END SIDEBAR MENU -->
+
+</div>

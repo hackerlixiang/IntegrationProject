@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.www.dao.IDataDictionaryItemDao"><!-- 为当前映射关系创建的命名空间 -->
+
+	<!--       
+		id：为这个插入操作起的一个名字。
+		keyProperty ：代表主键对应对象的属性名称
+		parameterType：代表这个 insert 操作对应的方法需要传入一个什么类型的对象, 可以引用mybatis-config.xml中typeAliases定义的类型
+		useGeneratedKeys： 代表告诉 mybatis ，获取影响行数
+		#{xxx}：为占位符，xxx指parameterType传入类型中的属性
+	-->
+	<insert id="add" keyProperty="id" parameterType="DataDictionaryItemEntity" useGeneratedKeys="true">
+		INSERT INTO 
+			t_data_dictionary_item(create_date,update_date,code,name,data_dictionary_id) 
+		VALUES 
+			(now(),now(),#{code},#{name},#{dataDictionaryId})
+	</insert>
+
+</mapper>

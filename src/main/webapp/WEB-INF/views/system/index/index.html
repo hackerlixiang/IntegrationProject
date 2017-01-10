@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+
+<!--[if !IE]><!-->
+<html lang="zh-CN"> 
+<!--<![endif]-->
+
+[#-- head开始 --] 
+<head>
+	<meta charset="utf-8" />
+
+	<title>myproject</title>
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<meta content="" name="description" />
+
+	<meta content="" name="author" />
+
+	[#-- 引入index CSS样式 --] 
+	[#include "/system/include/css/index_top.html"/]
+	[#include "/system/include/css/index_bottom.html"/]
+</head>
+[#-- head结束 --] 
+
+[#-- body开始 --] 
+<body class="page-header-fixed">
+
+	[#-- 引入公共页顶 --]
+	[#include "/system/index/top.html"/]
+
+	[#-- 中间部分开始 --]    
+	<div class="page-container row-fluid">
+
+		[#-- 引入菜单 --] 
+		[#include "/system/index/left.html"/]
+
+		[#-- 内容页开始 --] 
+		<div class="page-content">
+			<div class="container-fluid">
+				[#-- 引入导航 --] 
+				<div class="row-fluid">
+					[#include "/system/index/navigation.html"/]
+				</div>
+
+				[#-- 主页面开始 --] 
+				<div class="row-fluid">
+					<div class="span12">
+						<iframe src="/system/index/main" name="mainFrame" id="mainFrame" style="border:0px;width:100%;height:800px;" frameborder="0" scrolling="no"></iframe>
+					</div>
+				</div>
+				[#-- 主页面结束 --] 
+			</div>
+		</div>
+		[#-- 内容页结束  --]     
+
+	</div>
+	[#-- 中间部分结束 --] 
+
+	[#-- 引入底部 --] 
+	[#include "/system/index/foot.html"/]
+	
+	[#-- 引入index JS --]
+	[#include "/system/include/js/index_top.html"/]
+	[#include "/system/include/js/index_bottom.html"/]
+</body>
+
+[#-- body结束 --] 
+</html>

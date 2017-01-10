@@ -1,0 +1,209 @@
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>菜单</title>
+[#--引入CSS--]
+<link rel="stylesheet" type="text/css" href="/assets/tools/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/public.css" rel="stylesheet">
+[#--input_css--]
+[#include "/system/include/css/input_css.html"/]
+<!-- 添加图标弹窗滚动条样式和取消图标li标签·  -->
+<style type="text/css">
+	.tabbable {
+		overflow: scroll;
+		height: 440px;
+		width: 1100px;
+	}
+	.tabbable .input-icons li{
+		list-style-type:none;
+	}
+</style>
+</head>
+<body>
+	<div class="container-fluid" style="height: 100%">
+		<form id="inputForm" action="/system/menu/update" method="post" class="form-horizontal col-sm-offset-2">
+			<input type="hidden" id="id" name="id" value="${menu.id!}">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">
+					<span class="color_red">*</span>
+					菜单名:
+				</label>
+				<div class="col-sm-6">
+					<input type="text" id="name" name="name" value="${menu.name!'-'}" placeholder="菜单名" class="form-control"/>
+					</span><span class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">
+					<span class="color_red">*</span>
+					菜单指向路径:
+				</label>
+				<div class="col-sm-6">
+					<input type="text" id="path" name="path" value="${menu.path!'-'}" placeholder="菜单指向路径" class="form-control"/>
+					<span class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">
+					<span class="color_red">*</span>
+					菜单图标:
+				</label>
+				<div class="col-sm-6">
+					<input type="text" id="icon" name="icon" value="${menu.icon!'-'}" placeholder="菜单图标" class="form-control custom-icon" readonly="readonly"/>
+					<span class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">
+					父级菜单:
+				</label>
+				<div class="col-sm-6">
+					<select id="parentId" name="parentId" class="form-control" style="height:100px;" data-placeholder="请选择">
+						<option value=""></option>
+						[#list roots as root]
+						<option value="${root.id}" [#if menu.parent??&&menu.parent.id==root.id] selected="selected" [/#if]>${root.name}</option>
+						[/#list]
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-2 col-sm-offset-3 col-sm-2">
+					<button type="submit" class="btn btn-default">
+						提交&nbsp;<i class="glyphicon glyphicon-ok"></i>
+					</button>
+				</div>
+				<div class="col-xs-offset-2 col-xs-2 col-sm-offset-1 col-sm-2">
+					<button type="button" class="btn btn-default" id="refresh">
+						重置&nbsp;<i class="glyphicon glyphicon-repeat"></i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	[#include "/system/menu/icons.html"/]
+     
+	[#--引入JS--]
+	<script type="text/javascript" src="/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+	[#--input_js--]
+	[#include "/system/include/js/input_js.html"/]
+	
+	<script type="text/javascript">
+		$(function() {
+			/**
+			 * 清除自定义样式
+			 * @author lixiang
+			 */
+			function clearCustomIcon(){
+				$('#icon').next().removeClass($('#icon').val());
+			}
+			
+			//-----------------------------form validate开始-----------------------------
+			$("#inputForm").validate({
+				ignore:".ignore",
+				rules:{
+					name:{
+						required: true,
+						minlength: 2,
+						maxlength: 8,
+						remote: {
+							url: "/system/menu/validateRepeatName",
+							type: "post",
+							data:{
+								id:function(){return $("#id").val()}
+							}
+						}
+					},
+					path:{
+						required: true,
+						matching:/\/\w\S/,
+						remote: {
+							url: "/system/menu/validateRepeatPath",
+							type: "post",
+							data:{
+								id:function(){return $("#id").val()}
+							}
+						}
+					}
+				},
+				messages:{
+					name: {
+						required:"请输入菜单名",
+						minlength:"菜单名长度为2-8个字符",
+						maxlength:"菜单名长度为2-8个字符",
+						remote:"菜单名已存在"
+					},
+					path:{
+						required:"请输入菜单路径",
+						matching:"菜单路径格式不正确",
+						remote:"菜单路径不可重复"
+					}
+				},
+				errorPlacement:function(error, element) {
+					formFailure(element,error);
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					formSuccess($(element));
+				},
+				submitHandler:function(form) {
+					//验证通过执行form提交
+					$("#inputForm").ajaxSubmit({
+			            success: function(data) {
+			            	messageDialog(data.type,data.content);
+			            }
+					});
+				}
+			});
+			//-----------------------------form validate结束-----------------------------
+			
+			$("#refresh").click(function(){
+				//点击确定清除自定义icon
+    	    	clearCustomIcon();
+				//执行表单重置方法
+				refreshForm();
+			});
+			
+			//菜单图标弹窗
+			var d = null;
+			$("#icon").click(function(){
+				 $("#icons").removeClass("hide");
+				d = dialog({
+					title:"图标选择",
+	           	    content: $("#icons"),
+	           	 	quickClose: true,
+	           	 	esc: true,
+	           	 	fixed: true,
+	           	 	padding: 0,
+	           	 	width:1100,
+	           	 	height:440,
+	           	 	top:10,
+		           	onclose: function () {//菜单弹窗关闭时执行方法
+		 				if (this.returnValue) {
+		 					//清除掉自定义icon
+		 					clearCustomIcon();
+		 					//为icon赋值
+		 					$('#icon').val(this.returnValue);
+		 					//在icon框后加上菜单图标
+		 					$('#icon').next().addClass(this.returnValue);
+		 				}
+		 			}
+	           	}).show();
+			});
+			
+			//为每个菜单图标添加点击事件
+			$(".tab-content").find("ul").find("li").click(function(){
+				//获取点击到的菜单图标的值
+				var iconClass = $(this).find("i").attr("class");
+				d.close(iconClass); // 关闭（隐藏）对话框
+				d.remove();// 主动销毁对话框
+				$("#iconShow").attr("class","");//清空图标
+				$("#iconShow").addClass(iconClass);//显示选择的图标
+				return false;
+			});
+			
+		});
+	</script>	
+</body>
+</html>

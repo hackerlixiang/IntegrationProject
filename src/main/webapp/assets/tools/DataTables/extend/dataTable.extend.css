@@ -1,0 +1,20 @@
+/* 为dt表头和底部加上边线，左边线除外 */
+table.dataTable thead th, table.dataTable thead td,table.dataTable tfoot th, table.dataTable tfoot td{
+	border: 1px solid #ddd;
+	border-left: none;
+}
+
+/* 为dt表头和底部第一个单元格添加左边线 */
+table.dataTable thead th:first-child,table.dataTable tfoot th:first-child {
+	border-left: 1px solid #ddd;
+}
+
+/* 让dt的所有单元格文字居中 */
+.dtextend td,th{
+	text-align: center;
+}
+
+/* 将每页显示条数下拉限制宽度*/
+.dropdown-menu{
+	min-width: 95px;
+}

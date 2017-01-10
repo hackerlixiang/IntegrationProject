@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.myproject.www.entity.Department" alias="Department"/>
+		
+		<typeAlias type="com.myproject.www.pageQuery.MenuQuery" alias="menuQuery"/>
+		<typeAlias type="com.myproject.www.entity.MenuEntity" alias="MenuEntity"/>
+		
+		<typeAlias type="com.myproject.www.pageQuery.UserQuery" alias="userQuery"/>
+		<typeAlias type="com.myproject.www.entity.UserEntity" alias="UserEntity"/>
+		
+		<typeAlias type="com.myproject.www.pageQuery.DataDictionaryQuery" alias="DataDictionaryQuery"/>
+		<typeAlias type="com.myproject.www.entity.DataDictionaryEntity" alias="DataDictionaryEntity"/>
+		
+		<typeAlias type="com.myproject.www.pageQuery.DataDictionaryItemQuery" alias="DataDictionaryItemQuery"/>
+		<typeAlias type="com.myproject.www.entity.DataDictionaryItemEntity" alias="DataDictionaryItemEntity"/>
+		
+	</typeAliases>
+
+	<!--<plugins>
+	     SQL性能拦截器
+	     <plugin interceptor="com.myproject.www.interceptor.MybatisInterceptor"></plugin>
+	</plugins> -->
+	
+	<mappers>
+		<mapper resource="com/myproject/www/mapper/DepartmentMapper.xml" />
+		<mapper resource="com/myproject/www/mapper/MenuMapper.xml" />
+		<mapper resource="com/myproject/www/mapper/UserMapper.xml" />
+		<mapper resource="com/myproject/www/mapper/DataDictionaryMapper.xml" />
+		<mapper resource="com/myproject/www/mapper/DataDictionaryItemMapper.xml" />
+	</mappers>
+	
+</configuration>

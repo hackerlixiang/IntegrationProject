@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+       	   http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+    	   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/tx
+    	   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    	   http://www.springframework.org/schema/cache 
+		   http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+		   http://www.springframework.org/schema/aop   
+       	   http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       	   http://www.springframework.org/schema/websocket
+		   http://www.springframework.org/schema/websocket/spring-websocket.xsd
+    	   ">
+
+	<!-- 引用数据库连接配置 -->
+	<context:property-placeholder location="classpath:config/properties/db.properties" />
+	
+	<import resource="classpath:config/xml/spring-mvc.xml"/>
+	<import resource="classpath:config/xml/freemarker.xml"/>
+	<import resource="classpath:config/xml/shiro.xml"/>
+	
+	<!-- 自动扫描, 并保证@Required、@Autowired的属性被注入,指定要扫描的包 -->  
+	<context:component-scan base-package="com.myproject.www" annotation-config="true">
+		<!-- 除去controller不扫描（交给mvc配置文件自己扫描） -->  
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<!--配置数据源-->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	<!--配置sqlSessionFactory 并读取mybatis的一些配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/xml/mybatis-config.xml"></property>
+	</bean>
+	<!--自动扫描 将Mapper接口生成代理注入到Spring-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.myproject.www.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<!-- 定义声明式的事务管理器--> 
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <property name="dataSource" ref="dataSource" /> 
+	</bean>
+	<!--使用注解式事务声明-->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<aop:aspectj-autoproxy/>
+
+	<!-- 验证器 -->
+	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean> -->
+	
+	<!-- 配置国际化 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 缓存有效秒数 -->
+		<property name="cacheSeconds" value="10000" />
+		<!-- 使用代码作为默认消息 -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<!-- 国际化资源文件 -->
+		<property name="basenames">
+			<list>
+				<value>classpath:config/properties/message_info</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置国际化语言转换 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+		<!-- 所在区域（语种） -->
+		<property name="defaultLocale" value="zh_CN" />
+	</bean>
+	
+	<!-- 配置缓存集成 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<!-- 配置EhCache管理 -->
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<!-- 配置文件 -->
+		<property name="configLocation" value="classpath:config/xml/ehcache.xml" />
+		<!-- 是否共享 -->
+		<property name="shared" value="true" />
+	</bean>
+
+	<!-- 配置缓存管理 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<!-- EhCache管理 -->
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+	
+</beans>

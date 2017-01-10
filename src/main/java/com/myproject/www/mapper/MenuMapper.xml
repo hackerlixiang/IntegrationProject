@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.www.dao.IMenuDao"><!-- 为当前映射关系创建的命名空间 -->
+
+<!-- 菜单列表 -->
+<resultMap type="MenuEntity" id="menuAssociation"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
+	<!-- id/result ：对应这属性的映射。property为模型中的属性，column为表中的列 -->
+	<id property="id" column="id"/><!-- id 一般用于映射主键,可以提高速度 -->
+	<result property="name" column="name"/><!-- result 一般对于普通的属性 -->
+	<result property="path" column="path"/>
+	<result property="icon" column="icon"/>
+	<result property="level" column="level"/>
+	<result property="sort" column="sort"/>
+	<association property="parent" column="parent_id" javaType="MenuEntity" select="findById"/><!-- 关联单个属性建议采用此种方式，避免N+1问题，可省略 column -->
+</resultMap>
+
+<!-- 菜单集合 -->
+<resultMap type="MenuEntity" id="menuCollection">
+	<id property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="path" column="path"/>
+	<result property="icon" column="icon"/>
+	<result property="level" column="level"/>
+	<result property="sort" column="sort"/>
+	<collection property="childrens" column="id" javaType="ArrayList" ofType="MenuEntity" select="findChildByParentId"/><!-- 关联集合建议采用此种方式，避免N+1问题，可省略 column -->
+</resultMap>
+
+<sql id="sql_count"> SELECT COUNT(m.id) FROM t_menu m </sql>
+<sql id="sql_result"> SELECT m.* FROM t_menu m </sql>
+<sql id="sql_count_select"> SELECT COUNT(m.id) FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id</sql>
+<sql id="sql_page_select"> SELECT m.* FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id</sql>
+
+<!-- ***********************************************************插入操作************************************************************ -->
+	<!--       
+		id：为这个插入操作起的一个名字。
+		keyProperty ：代表主键对应对象的属性名称
+		parameterType：代表这个 insert 操作对应的方法需要传入一个什么类型的对象, 可以引用mybatis-config.xml中typeAliases定义的类型
+		useGeneratedKeys： 代表告诉 mybatis ，获取影响行数
+		#{xxx}：为占位符，xxx指parameterType传入类型中的属性
+	-->
+	<insert id="add" keyProperty="id" parameterType="MenuEntity" useGeneratedKeys="true">
+		INSERT INTO 
+			t_menu(create_date,update_date,name,path,icon,level,parent_id) 
+		VALUES 
+			(now(),now(),#{name},#{path},#{icon},#{level},#{parent.id})
+	</insert>
+	
+	<update id="update" parameterType="MenuEntity" useGeneratedKeys="true">
+		UPDATE t_menu 
+			<set>
+				<if test="#{name}!=null and #{name}!=''">
+					name = #{name}, 
+				</if>
+				<if test="#{path}!=null and #{path}!=''">
+					path = #{path}, 
+				</if>
+				<if test="#{icon}!=null and #{icon}!=''">
+					icon = #{icon}, 
+				</if>
+				<if test="#{parentId}!=null">
+					parent_id = #{parentId}, 
+				</if>
+				update_date = now()
+			</set>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		DELETE FROM t_menu WHERE id = #{id}
+	</delete>
+	
+	<!-- 验证菜单名称是否重复 -->
+	<select id="validateRepeatName" parameterType="String" resultType="Long" >
+		SELECT m.id FROM t_menu m <where> m.name = #{name}</where>
+	</select>
+	
+	<!-- 验证菜单路径是否重复 -->
+	<select id="validateRepeatPath" parameterType="String" resultType="Long">
+		SELECT m.id FROM t_menu m <where> m.path = #{path}</where>
+	</select>
+	
+	<!-- 通过ID获得菜单 -->
+	<select id="findById" parameterType="Long" resultMap="menuAssociation" >
+		<include refid="sql_result"/> <where> m.id = #{id}</where>
+	</select>
+	
+	<!-- 获取菜单下的子菜单 -->
+	<select id="findChildByParentId" parameterType="Long" resultMap="menuAssociation">
+		<include refid="sql_result"/> <where> m.parent_id = #{parentId}</where>
+	</select>
+	
+	<!-- 获取全部菜单 -->
+	<select id="findAll" resultMap="menuAssociation">
+		<include refid="sql_result"/>
+	</select>
+	
+	<!-- 获取树形菜单 -->
+	<select id="findMenus" resultMap="menuCollection">
+		<include refid="sql_result"/> <where>m.parent_id IS NULL</where>
+	</select>
+	
+	<!-- 获取根菜单 -->
+	<select id="findRoot" resultType="MenuEntity">
+		<include refid="sql_result"/> <where>m.parent_id IS NULL</where>
+	</select>
+	
+	<!-- 获取菜单页列表 -->
+	<select id="findPage" parameterType="menuQuery" resultMap="menuAssociation">
+		<include refid="sql_page_select"/>
+		<where>
+			<foreach collection="querys" index="key" item="map" separator=" and ">
+				m.${key} 
+				<foreach collection="map" index="filCond" item="value">
+					<if test="filCond=='eq'"> = #{value} </if>
+					<if test="filCond=='like'"> LIKE CONCAT('%',#{value},'%') </if> 
+				</foreach>
+			</foreach>
+			
+			<if test="pname!=null and pname!=''">
+				p.name
+				<if test="pnameFilter=='eq'"> = #{pname} </if>
+				<if test="pnameFilter=='like'"> LIKE CONCAT('%',#{pname},'%') </if>
+			</if>
+		</where>
+		<!-- <if test="@com.myproject.www.util.CommonUtils@isNotNullOrEmpty(orders)"> ORDER BY </if> -->
+		<foreach collection="orders" index="key" item="value" open=" ORDER BY " separator=",">
+			m.${key} ${value}
+		</foreach>
+		LIMIT #{start},#{length};
+	</select> 
+	
+	<!-- 获取过滤后的菜单数量 -->
+	<select id="getFilteredCount" parameterType="menuQuery" resultType="Long">
+		<include refid="sql_count_select"/>
+		<where>
+			<foreach collection="querys" index="key" item="map" separator=" and ">
+				m.${key} 
+				<foreach collection="map" index="filCond" item="value">
+					<if test="filCond=='eq'">= #{value} </if>
+					<if test="filCond=='like'"> LIKE CONCAT('%',#{value},'%') </if> 
+				</foreach>
+			</foreach>
+			
+			<if test="pname!=null and pname!=''">
+				p.name
+				<if test="pnameFilter=='eq'"> = #{pname} </if>
+				<if test="pnameFilter=='like'"> LIKE CONCAT('%',#{pname},'%') </if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 获取菜单总数量 -->
+	<select id="getCount" parameterType="menuQuery" resultType="Long">
+		<include refid="sql_count"/>
+	</select>
+	
+<!-- **********************************************修改操作************************************** -->
+	 <!-- <update id="update" parameterType="Menu">
+		UPDATE t_menu 
+			<set>
+				<if test="#{name}!=null and #{name}!=''">
+					menuname = #{name}, 
+				</if>
+				<if test="#{age}!=null">
+					age = #{age}, 
+				</if>
+				<if test="#{hireDate}!=null">
+					hireDate = #{hireDate}, 
+				</if>
+				<if test="#{department}!=null">
+					department_id = #{department.id} 
+				</if>
+			</set>
+		WHERE id = #{id}
+	</update> -->
+	
+	
+	
+	
+<!-- **********************************************删除操作************************************** -->
+	<!-- <delete id="delete" parameterType="Long">
+		DELETE FROM t_menu WHERE id = #{id}
+	</delete> -->
+	
+	
+<!-- ********************************************获取单个操作************************************* -->
+	<!-- 
+		查询有返回，返回类型可以用resultType来，但是 resultType只能完成默认的对象类型的转换，
+		如果表里面的列和模型中的属性不一致使用resultMap(需要在外面定义resultMap)
+	-->
+	<!-- <select id="get" parameterType="Long" resultMap="menumapping">resultType="Menu"
+		SELECT d.id AS did,d.name AS dname,u.* FROM t_menu u LEFT JOIN t_department d ON d.id = u.department_id WHERE u.id = #{id}
+	</select> -->
+
+
+<!-- *****************************************************获取全部操作**************************************************************** -->
+	<!-- <select id="findAll" resultMap="menumapping">
+		SELECT d.name AS dname,u.* FROM t_menu u LEFT JOIN t_department d ON d.id = u.department_id
+	</select> -->
+	
+	
+<!-- *******************************************************查询+分页***************************************************************-->	
+	<!-- <select id="getCount" parameterType="menuQuery" resultType="Long">
+		SELECT COUNT(*) FROM t_menu
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="name!=null and name!=''">
+				menuname LIKE CONCAT('%',#{name},'%') 
+			</if>
+			<if test="dept_id!=null and dept_id!=-1">
+				AND department_id = #{dept_id}
+			</if>
+		</trim>
+	</select>
+	<select id="findPage" parameterType="query" resultMap="menumapping">
+		SELECT d.name AS dname,u.* FROM t_menu u LEFT JOIN t_department d ON d.id = u.department_id
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="name!=null and name!=''">
+				u.menuname LIKE CONCAT('%',#{name},'%') 
+			</if>
+			<if test="dept_id!=null and dept_id!=-1">
+				AND department_id = #{dept_id}
+			</if>
+		</trim>
+		LIMIT #{startSize},2;
+	</select> 
+	-->
+	
+</mapper>
