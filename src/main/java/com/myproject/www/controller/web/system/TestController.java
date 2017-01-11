@@ -19,13 +19,13 @@ public class TestController extends BaseSystemController{
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(HttpServletRequest request){
-		System.out.println("--------------");
-		System.out.println(1/0);
-		try {
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("--------------");
+//		System.out.println("--------------");
+//		System.out.println(1/0);
+//		try {
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("--------------");
 		return "test";
 	}
 	

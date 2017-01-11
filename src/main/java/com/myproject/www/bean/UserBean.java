@@ -8,12 +8,15 @@ import com.myproject.www.utils.validate.annon.Validate;
 public class UserBean extends BaseBean {
 
 	@Validate(minLength=6,maxLength=15)
+	/** 用户名 */
 	private String username;
 
 	@Validate(minLength=6,maxLength=15,regexExpression = "^(?![^A-Za-z]+$)(?![^0-9]+$)[0-9a-zA-Z_]+$")
+	/** 密码 */
 	private String password;
 
 	@Validate(regexType = RegexType.CHINESE)
+	/** 名称 */
 	private String name;
 
 	/** 昵称 */

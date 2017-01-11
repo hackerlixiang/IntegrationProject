@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.exception.MessageTypeMismatchException;
 import com.myproject.www.utils.SpringUtils;
+import com.myproject.www.utils.StringUtils;
 
 public final class Message {
 	
@@ -39,10 +40,13 @@ public final class Message {
 	
 	/**
 	 * 获取消息
-	 * @param code 消息code（国际化文件 如MenuAdd.success）
+	 * @param code 消息code（国际化文件 如MENU_PARAM_ERROR）
 	 * @return 消息对象
 	 */
 	public static String getMessage(String code){
+		if(StringUtils.isBlank(code)){
+			code = MessageAlias.MESSAGE_UNDEFINED;
+		}
 		return SpringUtils.getMessage(code);
 	} 
 	
@@ -57,6 +61,9 @@ public final class Message {
 		if(!Arrays.asList(typs).contains(type)){
 			throw new MessageTypeMismatchException();
 		}
+		if(StringUtils.isBlank(code)){
+			code = MessageAlias.MESSAGE_UNDEFINED;
+		}
 		return new Message(type,getMessage(code));
 	}
 	
@@ -67,7 +74,46 @@ public final class Message {
 	 * @return 消息对象
 	 */
 	public static Message addMessage(MessageTypeEnum type, String content){
+		MessageTypeEnum[] typs = MessageTypeEnum.values();
+		if(!Arrays.asList(typs).contains(type)){
+			throw new MessageTypeMismatchException();
+		}
 		return new Message(type,content);
 	}
 	
+	/**
+	 * 获取成功消息
+	 * @param code 消息CODE
+	 * @return 消息对象
+	 */
+	public static Message getSuccessMessage(String code){
+		if(StringUtils.isBlank(code)){
+			code = MessageAlias.MESSAGE_UNDEFINED;
+		}
+		return getMessage(MessageTypeEnum.success, code);
+	}
+	
+	/**
+	 * 获取失败消息
+	 * @param code 消息CODE
+	 * @return 消息对象
+	 */
+	public static Message getFailureMessage(String code){
+		if(StringUtils.isBlank(code)){
+			code = MessageAlias.MESSAGE_UNDEFINED;
+		}
+		return getMessage(MessageTypeEnum.failure, code);
+	}
+	
+	/**
+	 * 获取警告消息
+	 * @param code 消息CODE
+	 * @return 消息对象
+	 */
+	public static Message getWarningMessage(String code){
+		if(StringUtils.isBlank(code)){
+			code = MessageAlias.MESSAGE_UNDEFINED;
+		}
+		return getMessage(MessageTypeEnum.warning, code);
+	}
 }

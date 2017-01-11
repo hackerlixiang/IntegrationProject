@@ -105,4 +105,12 @@
 		<property name="cacheManager" ref="ehCacheManager" />
 	</bean>
 	
+	<bean id="websocket" class="com.myproject.www.websocket.WebSocketHander"/>
+
+	<websocket:handlers allowed-origins="*">
+	    <websocket:mapping path="/echo" handler="websocket"/>
+	    <websocket:handshake-interceptors>
+	    	<bean class="com.myproject.www.websocket.HandshakeInterceptor"/>
+	    </websocket:handshake-interceptors>
+	</websocket:handlers>
 </beans>

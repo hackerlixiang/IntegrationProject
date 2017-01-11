@@ -18,9 +18,6 @@ import com.myproject.www.others.MessageAlias;
 import com.myproject.www.pageQuery.Pagination;
 import com.myproject.www.pageQuery.UserQuery;
 import com.myproject.www.service.IUserService;
-import com.myproject.www.utils.IdCardUtils;
-import com.myproject.www.utils.StringUtils;
-import com.myproject.www.utils.WebUtils;
 
 @Controller
 @RequestMapping("/system/user")
@@ -72,18 +69,16 @@ public class UserController extends BaseSystemController{
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
 	public Message add(UserBean userBean,HttpServletRequest request) throws Exception{
-		// 补充bean属性
-		userBean.setRegistIp(WebUtils.getRemoteIp(request));//获取用户注册IP地址
 		
-		if(userBean.getAge()==null&&StringUtils.isNotBlank(userBean.getIdCard())){// 如果用户未填写年龄并且身份证不为空，则从身份证上获取
-			userBean.setAge(IdCardUtils.getAgeByIdCard(userBean.getIdCard()));
-		}
+		userService.perBeforeHandleUser(userBean, request);
 		
 		//用户Bean验证
 		if(!valid(userBean)){
 			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.USER_PARAM_ERROR);
 		}
+		
 		//添加用户
-		return userService.save(userBean);
+//		return userService.save(userBean);
+		return Message.addMessage(MessageTypeEnum.success, "添加成功");
 	}
 }
