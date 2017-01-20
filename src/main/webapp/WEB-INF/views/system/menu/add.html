@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>菜单</title>
-[#--引入CSS--]
-<link rel="stylesheet" type="text/css" href="/assets/tools/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+[#--引入PUBLIC CSS--]
+[#include "/system/include/css/public_css.html"/]
 [#--input_css--]
 [#include "/system/include/css/input_css.html"/]
 <!-- 添加图标弹窗滚动条样式和取消图标li标签·  -->
@@ -48,6 +48,7 @@
 				</label>
 				<div class="col-sm-6">
 					<input type="text" id="icon" name="icon" placeholder="菜单图标" class="form-control custom-icon"/>
+					<span class="form-control-feedback"></span>
 					<span class="text-danger"></span>
 				</div>
 			</div>
@@ -180,7 +181,6 @@
 		 					$('#icon').val(this.returnValue);
 		 					//在icon框后加上菜单图标
 		 					//为自定义icon位调整位置
-		 					console.debug($('#icon'));
 		 					$('#icon').next().css({ "right":"27px","top":"10px"});
 		 					$('#icon').next().addClass(this.returnValue);
 		 				}

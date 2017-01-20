@@ -4,7 +4,7 @@
  */
 function initInputForm(){
 	//为表单中的input加上icon位
-	$("form").find("input").after("<span class='form-control-feedback' aria-hidden='true'>");
+	$("form").find(".form-group").append("<span class='tag' aria-hidden='true' style='margin-top:8px;'>");
 	//为支持icon位添加属性
 	$("form").find(".form-group").addClass("has-feedback");
 	//将表单中的下拉菜单改成select2的组件
@@ -28,13 +28,15 @@ function refreshForm(){
 	//移除失败样式
 	$(".form-group").removeClass("has-error");
 	//移除成功图标√
-	$(".form-group").find(".form-control-feedback").removeClass("glyphicon glyphicon-ok");
+	$(".form-group").find(".tag").removeClass("glyphicon glyphicon-ok");
 	//移除失败图标×
-	$(".form-group").find(".form-control-feedback").removeClass("glyphicon glyphicon-remove");
+	$(".form-group").find(".tag").removeClass("glyphicon glyphicon-remove");
 	//清空错误提示
 	$(".form-group").find(".text-danger").text("");
 	//重置select2组件选中效果
-	$("#select2-parentId-container").closest("form")[0].reset();
+	if($("#select2-parentId-container")!=null&&$("#select2-parentId-container")&&$("#select2-parentId-container").closest("form")[0]){
+		$("#select2-parentId-container").closest("form")[0].reset();
+	}
 	
 	var defaultText = $("#select2-parentId-container").closest("div").find("select").find("option:selected").text();
 	if(defaultText!=null && defaultText!="" && typeof(defaultText) != "undefined"){
@@ -57,12 +59,12 @@ function formSuccess(element){
 	//清空失败提示
 	element.closest(".form-group").find("div").find(".text-danger").text("");
 	//如果不是自定义icon，将失败的icon'×'移除掉
-	element.next().removeClass("glyphicon glyphicon-remove");
+	element.closest(".form-group").find(".tag").removeClass("glyphicon glyphicon-remove color_red3");
 	//添加成功样式
 	element.closest(".form-group").addClass("has-success");
 	//如果不是自定义icon，添加成功'√'icon
 	if(!element.hasClass("custom-icon")){
-		element.next().addClass("glyphicon glyphicon-ok");
+		element.closest(".form-group").find(".tag").addClass("glyphicon glyphicon-ok color_green4");
 	}
 }
 
@@ -76,12 +78,12 @@ function formFailure(element,error){
 	//移除成功样式
 	element.closest(".form-group").removeClass("has-success");
 	//移除成功的iocn'√'
-	element.next().removeClass("glyphicon glyphicon-ok");
+	element.closest(".form-group").find(".tag").removeClass("glyphicon glyphicon-ok color_green4");
 	//添加失败样式
 	element.closest(".form-group").addClass("has-error");
 	//如果不是自定义icon添加失败icon'×'
-	element.next().css({ "right":"","top":""});
-	element.next().addClass("glyphicon glyphicon-remove");
+	element.closest(".form-group").find(".tag").css({ "right":"","top":""});
+	element.closest(".form-group").find(".tag").addClass("glyphicon glyphicon-remove color_red3");
 	//添加错误提示
 	element.closest(".form-group").find("div").find(".text-danger").text(error.text());
 }

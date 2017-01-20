@@ -25,11 +25,11 @@ public class Pagination<T> {
 	/** 每页显示条数 */
 	private Long length;
 	
-	/** 请求次数 */
-	private Long draw;
-	
 	/** 开始条数 */
 	private Long start;
+	
+	/** 请求次数 */
+	private Long draw;
 	
 	public Pagination() {
 		

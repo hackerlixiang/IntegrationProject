@@ -16,12 +16,8 @@ public abstract class Aasd {
 //	}
 	
 	public static void main(String[] args) {
-		String s = "402880fa591b4a5801591b4c6db80001";
-		String[] ss = s.split(",");
-		System.out.println(ss.length);
-		System.out.println(ss[1]);
-		for (String string : ss) {
-			System.out.println(string);
-		}
+		String s = "E:/tomact/apache-tomcat-7.0.70/wtpwebapps/gcrcsUploadFile/loanPhoto/2017/01/20/020605/73be5ac347b547c18503cf43cd80ae07.jpg";
+		String ss = s.split("\\.")[s.split("\\.").length-1];
+		System.out.println(ss);
 	}
 }

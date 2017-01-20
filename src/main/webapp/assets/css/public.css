@@ -1,3 +1,134 @@
-.color_red {
-	color:#FF0000 
-}
+/* ------------------------------------------------------------------蓝色------------------------------------------------------------------ */
+.color_blue1 {color:#191970}
+.color_blue2 {color:#000080}
+.color_blue3 {color:#00008B}
+.color_blue4 {color:#483D8B}
+.color_blue5 {color:#0000CD}
+.color_blue6 {color:#4169E1}
+.color_blue7 {color:#1E90FF}
+.color_blue8 {color:#6495ED}
+.color_blue9 {color:#00BFFF}
+.color_blue10 {color:#87CEFA}
+.color_blue11 {color:#B0C4DE}
+.color_blue12 {color:#ADD8E6}
+.color_blue13 {color:#4682B4}
+.color_blue14 {color:#008B8B}
+.color_blue15 {color:#5F9EA0}
+.color_blue16 {color:#00CED1}
+.color_blue17 {color:#48D1CC}
+.color_blue18 {color:#40E0D0}
+.color_blue19 {color:#87CECB}
+.color_blue20 {color:#B0E0E6}
+.color_blue21 {color:#AFEEEE}
+.color_blue22 {color:#E0FFFF}
+.color_blue23 {color:#F0FFFF}
+.color_blue24 {color:#F0F8FF}
+.color_blue25 {color:#00FFFF}
+
+/* ------------------------------------------------------------------绿色------------------------------------------------------------------ */
+.color_green1 {color:#556B2F}
+.color_green2 {color:#808000}
+.color_green3 {color:#006400}
+.color_green4 {color:#228B22}
+.color_green5 {color:#2E8B57}
+.color_green6 {color:#008080}
+.color_green7 {color:#20B2AA}
+.color_green8 {color:#66CDAA}
+.color_green9 {color:#3CB371}
+.color_green10 {color:#8FBC8F}
+.color_green11 {color:#9ACD32}
+.color_green12 {color:#32CD32}
+.color_green13 {color:#00FF00}
+.color_green14 {color:#7FFF00}
+.color_green15 {color:#7CFC00}
+.color_green16 {color:#ADFF2F}
+.color_green17 {color:#00FA9A}
+.color_green18 {color:#00FF7F}
+.color_green19 {color:#90EE90}
+.color_green20 {color:#98F898}
+.color_green21 {color:#7FFFD4}
+
+/* ------------------------------------------------------------------红色------------------------------------------------------------------ */
+.color_red1 {color:#800000}
+.color_red2 {color:#8B0000}
+.color_red3 {color:#A52A2A}
+.color_red4 {color:#B22222}
+.color_red5 {color:#DC143C}
+.color_red6 {color:#FF0000}
+.color_red7 {color:#C71585}
+.color_red8 {color:#D87093}
+.color_red9 {color:#FF1493}
+.color_red10 {color:#FF00FF}
+.color_red11 {color:#FF69B4}
+.color_red12 {color:#FFC0CB}
+.color_red13 {color:#FFB6C1}
+
+/* ------------------------------------------------------------------紫色------------------------------------------------------------------ */
+.color_purple1 {color:#4B0082}
+.color_purple1 {color:#800080}
+.color_purple1 {color:#8B008B}
+.color_purple1 {color:#9932CC}
+.color_purple1 {color:#8A2BE2}
+.color_purple1 {color:#9400D3}
+.color_purple1 {color:#6A5ACD}
+.color_purple1 {color:#9370DB}
+.color_purple1 {color:#7B68EE}
+.color_purple1 {color:#BA55D3}
+.color_purple1 {color:#EE82EE}
+.color_purple1 {color:#DDA0DD}
+.color_purple1 {color:#D8BFD8}
+
+/* ------------------------------------------------------------------黄色------------------------------------------------------------------ */
+.color_yellow1 {color:#8B4513}
+.color_yellow2 {color:#A0522D}
+.color_yellow3 {color:#D2691E}
+.color_yellow4 {color:#CD5C5C}
+.color_yellow5 {color:#BC8F8F}
+.color_yellow6 {color:#F08080}
+.color_yellow7 {color:#FA8072}
+.color_yellow8 {color:#FFA07A}
+.color_yellow9 {color:#FF4500}
+.color_yellow10 {color:#FF6347}
+.color_yellow11 {color:#FF7F50}
+.color_yellow12 {color:#FF8C00}
+.color_yellow13 {color:#F4A460}
+.color_yellow14 {color:#CD853F}
+.color_yellow15 {color:#D2B48C}
+.color_yellow16 {color:#DEB887}
+.color_yellow17 {color:#F5DEB3}
+.color_yellow18 {color:#FFE4B5}
+.color_yellow19 {color:#FFDEAD}
+.color_yellow20 {color:#FFDAB9}
+.color_yellow21 {color:#FFE4C4}
+.color_yellow22 {color:#FAEBD7}
+.color_yellow23 {color:#FFEFD5}
+.color_yellow24 {color:#FFF8DC}
+.color_yellow25 {color:#B8860B}
+.color_yellow26 {color:#DAA520}
+.color_yellow27 {color:#FFD700}
+.color_yellow28 {color:#FFFF00}
+.color_yellow29 {color:#BDB76B}
+.color_yellow30 {color:#F0E68C}
+.color_yellow31 {color:#EEE8AA}
+.color_yellow32 {color:#F5F5DC}
+.color_yellow33 {color:#FFFACD}
+.color_yellow34 {color:#FAFAD2}
+
+/* ------------------------------------------------------------------灰色------------------------------------------------------------------ */
+.color_grey1 {color:#FFFFFF}
+.color_grey2 {color:#EEEEEE}
+.color_grey3 {color:#DDDDDD}
+.color_grey4 {color:#CCCCCC}
+.color_grey5 {color:#BBBBBB}
+.color_grey6 {color:#AAAAAA}
+.color_grey7 {color:#999999}
+.color_grey8 {color:#888888}
+.color_grey9 {color:#777777}
+.color_grey10 {color:#666666}
+.color_grey11 {color:#555555}
+.color_grey12 {color:#444444}
+.color_grey13 {color:#333333}
+.color_grey14 {color:#222222}
+.color_grey15 {color:#111111}
+.color_grey16 {color:#000000}
+

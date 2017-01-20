@@ -11,16 +11,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="com.myproject.www.entity.Department" alias="Department"/>
 		
-		<typeAlias type="com.myproject.www.pageQuery.MenuQuery" alias="menuQuery"/>
+		<typeAlias type="com.myproject.www.pageQuery.query.MenuQuery" alias="menuQuery"/>
 		<typeAlias type="com.myproject.www.entity.MenuEntity" alias="MenuEntity"/>
 		
-		<typeAlias type="com.myproject.www.pageQuery.UserQuery" alias="userQuery"/>
+		<typeAlias type="com.myproject.www.pageQuery.query.UserQuery" alias="userQuery"/>
 		<typeAlias type="com.myproject.www.entity.UserEntity" alias="UserEntity"/>
 		
-		<typeAlias type="com.myproject.www.pageQuery.DataDictionaryQuery" alias="DataDictionaryQuery"/>
+		<typeAlias type="com.myproject.www.pageQuery.query.DataDictionaryQuery" alias="DataDictionaryQuery"/>
 		<typeAlias type="com.myproject.www.entity.DataDictionaryEntity" alias="DataDictionaryEntity"/>
 		
-		<typeAlias type="com.myproject.www.pageQuery.DataDictionaryItemQuery" alias="DataDictionaryItemQuery"/>
+		<typeAlias type="com.myproject.www.pageQuery.query.DataDictionaryItemQuery" alias="DataDictionaryItemQuery"/>
 		<typeAlias type="com.myproject.www.entity.DataDictionaryItemEntity" alias="DataDictionaryItemEntity"/>
 		
 	</typeAliases>
