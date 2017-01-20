@@ -79,7 +79,7 @@
 					生日:
 				</label>
 				<div class="col-sm-6">
-					<input type="text" id="birthday" name="birthday" value="2012-12-02" placeholder="请输入生日" class="form-control form_datetime"/>
+					<input type="text" id="birthday" name="birthday" value="2012-12-02" placeholder="请输入生日" data-date-format="yyyy-mm-dd" class="form-control form_datetime"/>
 					<span class="text-danger"></span>
 				</div>
 			</div>
@@ -108,7 +108,15 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			$('#birthday').datetimepicker({  language:  'zh-CN',format: 'yyyy-mm-dd'});
+			$('#birthday').datetimepicker({ 
+		        language: "zh-CN",
+		        todayHighlight: true,
+		        format: 'yyyy-mm-dd',
+		        autoclose: true,
+		        startView: 'month',
+		        minView:'month',
+				todayBtn:true
+		    });
 			
 			//-----------------------------form validate开始-----------------------------
 			$("#inputForm").validate({

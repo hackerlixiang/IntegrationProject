@@ -1,13 +1,16 @@
-package com.myproject.www.pageQuery;
+package com.myproject.www.pageQuery.query;
 
-import com.myproject.www.entity.DataDictionaryEntity;
+import com.myproject.www.entity.UserEntity;
 
-public class DataDictionaryQuery extends BaseQuery<DataDictionaryEntity>{
+public class UserQuery extends BaseQuery<UserEntity>{
 	
-	public DataDictionaryQuery() {}
+	public UserQuery() {}
 	
 	/** 菜单名 */
-	private String name;
+	private String username;
+	
+	/** 菜单名过滤 */
+	private String usernameFilter;
 	
 	/** ID排序 */
 	private String idOrder;
@@ -21,12 +24,20 @@ public class DataDictionaryQuery extends BaseQuery<DataDictionaryEntity>{
 	/** 序列排序 */
 	private String usernameOrder;
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsernameFilter() {
+		return usernameFilter;
+	}
+
+	public void setUsernameFilter(String usernameFilter) {
+		this.usernameFilter = usernameFilter;
 	}
 
 	public String getIdOrder() {

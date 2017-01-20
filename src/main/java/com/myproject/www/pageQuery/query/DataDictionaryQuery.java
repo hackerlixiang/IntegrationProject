@@ -1,10 +1,10 @@
-package com.myproject.www.pageQuery;
+package com.myproject.www.pageQuery.query;
 
-import com.myproject.www.entity.DataDictionaryItemEntity;
+import com.myproject.www.entity.DataDictionaryEntity;
 
-public class DataDictionaryItemQuery extends BaseQuery<DataDictionaryItemEntity>{
+public class DataDictionaryQuery extends BaseQuery<DataDictionaryEntity>{
 	
-	public DataDictionaryItemQuery() {}
+	public DataDictionaryQuery() {}
 	
 	/** 菜单名 */
 	private String name;

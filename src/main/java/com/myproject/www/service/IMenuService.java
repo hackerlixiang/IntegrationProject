@@ -5,7 +5,7 @@ import java.util.List;
 import com.myproject.www.bean.MenuBean;
 import com.myproject.www.entity.MenuEntity;
 import com.myproject.www.others.Message;
-import com.myproject.www.pageQuery.MenuQuery;
+import com.myproject.www.pageQuery.query.MenuQuery;
 /**
  * 菜单Service
  * @author lixiang

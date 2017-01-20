@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.myproject.www.entity.BaseEntity;
-import com.myproject.www.pageQuery.BaseQuery;
+import com.myproject.www.pageQuery.query.BaseQuery;
 
 public interface IBaseDao<T extends BaseEntity,Q extends BaseQuery<T>,ID extends Serializable> {
 	

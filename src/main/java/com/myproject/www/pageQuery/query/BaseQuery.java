@@ -1,4 +1,4 @@
-package com.myproject.www.pageQuery;
+package com.myproject.www.pageQuery.query;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;

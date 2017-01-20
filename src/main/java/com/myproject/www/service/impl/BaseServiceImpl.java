@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myproject.www.dao.IBaseDao;
 import com.myproject.www.entity.BaseEntity;
-import com.myproject.www.pageQuery.BaseQuery;
 import com.myproject.www.pageQuery.Pagination;
+import com.myproject.www.pageQuery.query.BaseQuery;
 import com.myproject.www.service.IBaseService;
 import com.myproject.www.utils.BeanUtils;
 import com.myproject.www.utils.JsonUtils;

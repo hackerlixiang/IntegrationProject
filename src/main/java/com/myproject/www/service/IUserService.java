@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.myproject.www.bean.UserBean;
 import com.myproject.www.entity.UserEntity;
 import com.myproject.www.others.Message;
-import com.myproject.www.pageQuery.UserQuery;
+import com.myproject.www.pageQuery.query.UserQuery;
 /**
  * 用户Service
  * @author lixiang

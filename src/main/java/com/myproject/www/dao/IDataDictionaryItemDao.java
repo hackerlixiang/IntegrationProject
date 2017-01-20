@@ -1,7 +1,7 @@
 package com.myproject.www.dao;
 
 import com.myproject.www.entity.DataDictionaryItemEntity;
-import com.myproject.www.pageQuery.DataDictionaryItemQuery;
+import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 
 /**
  * 数据字典项  Dao

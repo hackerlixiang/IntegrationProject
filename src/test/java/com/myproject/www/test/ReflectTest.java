@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.myproject.www.dao.IMenuDao;
-import com.myproject.www.pageQuery.BaseQuery;
-import com.myproject.www.pageQuery.MenuQuery;
+import com.myproject.www.pageQuery.query.BaseQuery;
+import com.myproject.www.pageQuery.query.MenuQuery;
 
 public class ReflectTest {
 	public static void main(String[] args) throws Exception {

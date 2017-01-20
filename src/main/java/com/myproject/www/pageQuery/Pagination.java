@@ -3,6 +3,8 @@ package com.myproject.www.pageQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.myproject.www.pageQuery.query.BaseQuery;
+
 /**
  * 分页类
  * @author lixiang

@@ -13,7 +13,7 @@ import com.myproject.www.entity.MenuEntity;
 import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
-import com.myproject.www.pageQuery.MenuQuery;
+import com.myproject.www.pageQuery.query.MenuQuery;
 import com.myproject.www.service.IMenuService;
 import com.myproject.www.utils.BeanUtils;
 

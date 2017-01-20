@@ -12,8 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.myproject.www.entity.MenuEntity;
-import com.myproject.www.pageQuery.MenuQuery;
 import com.myproject.www.pageQuery.Pagination;
+import com.myproject.www.pageQuery.query.MenuQuery;
 import com.myproject.www.service.IMenuService;
 import com.myproject.www.utils.JsonUtils;
 

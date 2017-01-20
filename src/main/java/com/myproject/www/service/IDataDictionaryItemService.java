@@ -3,7 +3,7 @@ package com.myproject.www.service;
 import com.myproject.www.bean.DataDictionaryItemBean;
 import com.myproject.www.entity.DataDictionaryItemEntity;
 import com.myproject.www.others.Message;
-import com.myproject.www.pageQuery.DataDictionaryItemQuery;
+import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 
 /**
  * 数据字典项 Service

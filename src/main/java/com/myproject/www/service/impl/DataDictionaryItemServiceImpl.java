@@ -9,7 +9,7 @@ import com.myproject.www.entity.DataDictionaryItemEntity;
 import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
-import com.myproject.www.pageQuery.DataDictionaryItemQuery;
+import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 import com.myproject.www.service.IDataDictionaryItemService;
 import com.myproject.www.utils.BeanUtils;
 

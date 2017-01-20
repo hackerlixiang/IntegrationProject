@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.myproject.www.entity.BaseEntity;
-import com.myproject.www.pageQuery.BaseQuery;
 import com.myproject.www.pageQuery.Pagination;
+import com.myproject.www.pageQuery.query.BaseQuery;
 /**
  * BaseService
  * @author lixiang

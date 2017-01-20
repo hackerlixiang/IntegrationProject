@@ -1,4 +1,4 @@
-package com.myproject.www.pageQuery;
+package com.myproject.www.pageQuery.query;
 
 import com.myproject.www.entity.MenuEntity;
 

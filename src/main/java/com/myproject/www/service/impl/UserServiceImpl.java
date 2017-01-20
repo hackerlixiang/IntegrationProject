@@ -14,7 +14,7 @@ import com.myproject.www.dao.IUserDao;
 import com.myproject.www.entity.UserEntity;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
-import com.myproject.www.pageQuery.UserQuery;
+import com.myproject.www.pageQuery.query.UserQuery;
 import com.myproject.www.service.IUserService;
 import com.myproject.www.utils.BeanUtils;
 import com.myproject.www.utils.DateUtils;
