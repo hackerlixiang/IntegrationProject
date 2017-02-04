@@ -4,6 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myproject.www.dao.IDataDictionaryItemDao"><!-- 为当前映射关系创建的命名空间 -->
 
+	<!-- 菜单 -->
+	<resultMap type="DataDictionaryItemEntity" id="itemMap"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
+		<!-- id/result ：对应这属性的映射。property为模型中的属性，column为表中的列 -->
+		<id property="id" column="id"/><!-- id 一般用于映射主键,可以提高速度 -->
+		<result property="createDate" column="create_date"/><!-- result 一般对于普通的属性 -->
+		<result property="updateDate" column="update_date"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+		<result property="dataDictionaryCode" column="data_dictionary_code"/>
+		<result property="dataDictionaryId" column="data_dictionary_id"/>
+	</resultMap>
+
 	<!--       
 		id：为这个插入操作起的一个名字。
 		keyProperty ：代表主键对应对象的属性名称
@@ -17,5 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES 
 			(now(),now(),#{code},#{name},#{dataDictionaryId})
 	</insert>
+
+	<!-- 根据字典code获取字典项 -->
+	<select id="findItemByDataDictionaryCode" parameterType="String" resultMap="itemMap">
+		 SELECT item.* FROM t_data_dictionary_item item <where> item.data_dictionary_code = #{dictionaryCode}</where>
+	</select>
 
 </mapper>

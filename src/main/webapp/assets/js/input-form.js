@@ -54,6 +54,9 @@ function refreshForm(){
  * @param element 被验证元素
  */
 function formSuccess(element){
+	if(!element.val()){
+		return;
+	}
 	//移除失败样式
 	element.closest(".form-group").removeClass("has-error");
 	//清空失败提示

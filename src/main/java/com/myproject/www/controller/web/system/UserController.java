@@ -1,8 +1,10 @@
 package com.myproject.www.controller.web.system;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,20 +13,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myproject.www.bean.UserBean;
+import com.myproject.www.entity.DataDictionaryItemEntity;
 import com.myproject.www.entity.UserEntity;
 import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
 import com.myproject.www.pageQuery.Pagination;
 import com.myproject.www.pageQuery.query.UserQuery;
+import com.myproject.www.service.IDataDictionaryItemService;
+import com.myproject.www.service.IDataDictionaryService;
 import com.myproject.www.service.IUserService;
 
 @Controller
 @RequestMapping("/system/user")
 @Scope("prototype")
 public class UserController extends BaseSystemController{
-	@Autowired
+	
+	@Resource(name="userServiceImpl")
 	private IUserService userService;
+	
+	@Resource(name="dataDictionaryServiceImpl")
+	private IDataDictionaryService dataDictionaryService;
+	
+	@Resource(name="dataDictionaryItemServiceImpl")
+	private IDataDictionaryItemService dataDictionaryItemService;
 	
 	/**
 	 * 跳转至用户列表页面
@@ -58,6 +70,11 @@ public class UserController extends BaseSystemController{
 	@RequestMapping(value="/add",method = RequestMethod.GET)
 	public ModelAndView add(HttpServletRequest request) throws Exception{
 		ModelAndView modelAndView = getModelAndView(request);
+		
+		// 获取性别字典项
+		List<DataDictionaryItemEntity> dataDictionaryItems = dataDictionaryItemService.findItemByDataDictionaryCode("SEX");
+		modelAndView.addObject("dataDictionaryItems", dataDictionaryItems);
+		
 		return modelAndView;
 	}
 	
@@ -78,7 +95,60 @@ public class UserController extends BaseSystemController{
 		}
 		
 		//添加用户
-//		return userService.save(userBean);
-		return Message.addMessage(MessageTypeEnum.success, "添加成功");
+		return userService.save(userBean);
 	}
+	
+	
+	/**
+	 * 验证用户名是否重复
+	 * @param username 需要验证的用户名
+	 * @param id 需要验证的用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/validate_repeat_username",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean validateRepeatUsername(String username,Long id) throws Exception{
+		return userService.validateRepeatUsername(username,id);
+	}
+	
+	/**
+	 * 验证用户身份证是否重复
+	 * @param idCard 需要验证的用户身份证
+	 * @param id 需要验证的用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/validate_repeat_idcard",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean validateRepeatIdCard(String idCard,Long id) throws Exception{
+		return userService.validateRepeatIdCard(idCard,id);
+	}
+	
+	/**
+	 * 验证用户邮箱是否重复
+	 * @param email 需要验证的用户邮箱
+	 * @param id 需要验证的用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/validate_repeat_email",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean validateRepeatEmail(String email,Long id) throws Exception{
+		return userService.validateRepeatEmail(email,id);
+	}
+	
+	/**
+	 * 验证用户手机号是否重复
+	 * @param mobile 需要验证的用户手机号
+	 * @param id 需要验证的用户ID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/validate_repeat_mobile",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean validateRepeatMobile(String mobile,Long id) throws Exception{
+		return userService.validateRepeatMobile(mobile,id);
+	}
+	
 }

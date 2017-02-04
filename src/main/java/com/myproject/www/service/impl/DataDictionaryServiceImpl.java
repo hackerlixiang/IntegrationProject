@@ -30,5 +30,4 @@ public class DataDictionaryServiceImpl extends BaseServiceImpl<DataDictionaryEnt
 			return Message.getMessage(MessageTypeEnum.failure,MessageAlias.DATA_DICTIONARY_ADD_FAILURE);
 		}
 	}
-	
 }

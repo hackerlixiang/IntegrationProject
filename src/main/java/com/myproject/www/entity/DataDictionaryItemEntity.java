@@ -14,6 +14,9 @@ public class DataDictionaryItemEntity extends BaseEntity{
 	
 	/** 数据字典项名称 */
 	private String name;
+	
+	/** 数据字典项对应数据字典CODE */
+	private String dataDictionaryCode;
 	 
 	/** 数据字典项对应数据字典ID */
 	private Long dataDictionaryId;
@@ -39,6 +42,14 @@ public class DataDictionaryItemEntity extends BaseEntity{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDataDictionaryCode() {
+		return dataDictionaryCode;
+	}
+
+	public void setDataDictionaryCode(String dataDictionaryCode) {
+		this.dataDictionaryCode = dataDictionaryCode;
 	}
 
 	public Long getDataDictionaryId() {

@@ -1,18 +1,29 @@
 package com.myproject.www.controller.web.system;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
+
+
 
 //import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 //import javax.validation.ConstraintViolation;
 //import javax.validation.Validator;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 import com.myproject.www.utils.StringUtils;
 import com.myproject.www.utils.validate.ValidateUtils;
@@ -99,6 +110,18 @@ public class BaseSystemController {
 		}
 		return false;
 	}
+	
+	 /**
+     * 数据绑定
+     * 
+     * @param binder
+     *            WebDataBinder
+     */
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));  
+    }
 
 //	/**
 //	 * 数据验证

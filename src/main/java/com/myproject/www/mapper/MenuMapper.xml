@@ -4,11 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myproject.www.dao.IMenuDao"><!-- 为当前映射关系创建的命名空间 -->
 
-<!-- 菜单列表 -->
-<resultMap type="MenuEntity" id="menuAssociation"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
+<!-- 菜单 -->
+<resultMap type="MenuEntity" id="menuMap"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
 	<!-- id/result ：对应这属性的映射。property为模型中的属性，column为表中的列 -->
 	<id property="id" column="id"/><!-- id 一般用于映射主键,可以提高速度 -->
-	<result property="name" column="name"/><!-- result 一般对于普通的属性 -->
+	<result property="createDate" column="create_date"/><!-- result 一般对于普通的属性 -->
+	<result property="updateDate" column="update_date"/>
+	<result property="name" column="name"/>
 	<result property="path" column="path"/>
 	<result property="icon" column="icon"/>
 	<result property="level" column="level"/>
@@ -71,28 +73,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM t_menu WHERE id = #{id}
 	</delete>
 	
-	<!-- 验证菜单名称是否重复 -->
-	<select id="validateRepeatName" parameterType="String" resultType="Long" >
-		SELECT m.id FROM t_menu m <where> m.name = #{name}</where>
+	<!-- 根据菜单名称获取菜单 -->
+	<select id="findMenuByName" parameterType="String" resultMap="menuMap">
+		<include refid="sql_result"/> <where> m.name = #{name}</where>
 	</select>
 	
-	<!-- 验证菜单路径是否重复 -->
-	<select id="validateRepeatPath" parameterType="String" resultType="Long">
-		SELECT m.id FROM t_menu m <where> m.path = #{path}</where>
+	<!-- 根据菜单路径获取菜单 -->
+	<select id="findMenuByPath" parameterType="String" resultMap="menuMap">
+		<include refid="sql_result"/> <where> m.path = #{path}</where>
 	</select>
 	
 	<!-- 通过ID获得菜单 -->
-	<select id="findById" parameterType="Long" resultMap="menuAssociation" >
+	<select id="findById" parameterType="Long" resultMap="menuMap" >
 		<include refid="sql_result"/> <where> m.id = #{id}</where>
 	</select>
 	
 	<!-- 获取菜单下的子菜单 -->
-	<select id="findChildByParentId" parameterType="Long" resultMap="menuAssociation">
+	<select id="findChildByParentId" parameterType="Long" resultMap="menuMap">
 		<include refid="sql_result"/> <where> m.parent_id = #{parentId}</where>
 	</select>
 	
 	<!-- 获取全部菜单 -->
-	<select id="findAll" resultMap="menuAssociation">
+	<select id="findAll" resultMap="menuMap">
 		<include refid="sql_result"/>
 	</select>
 	
@@ -107,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 获取菜单页列表 -->
-	<select id="findPage" parameterType="menuQuery" resultMap="menuAssociation">
+	<select id="findPage" parameterType="menuQuery" resultMap="menuMap">
 		<include refid="sql_page_select"/>
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">

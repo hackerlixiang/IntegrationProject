@@ -1,5 +1,7 @@
 package com.myproject.www.service;
 
+import java.util.List;
+
 import com.myproject.www.bean.DataDictionaryItemBean;
 import com.myproject.www.entity.DataDictionaryItemEntity;
 import com.myproject.www.others.Message;
@@ -18,4 +20,11 @@ public interface IDataDictionaryItemService extends IBaseService<DataDictionaryI
 	 * @return 消息
 	 */
 	public Message save(DataDictionaryItemBean dataDictionaryItemBean) throws Exception;
+
+	/**
+	 * 根据字典code获取字典项
+	 * @param dictionaryCode 字典CODE
+	 * @return 字典项集合
+	 */
+	public List<DataDictionaryItemEntity> findItemByDataDictionaryCode(String dictionaryCode) throws Exception;
 }

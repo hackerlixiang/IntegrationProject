@@ -13,8 +13,8 @@ public interface IMenuDao extends IBaseDao<MenuEntity, MenuQuery, Long>{
 	
 	public List<MenuEntity> findRoot() throws Exception;
 
-	public Long validateRepeatName(String name) throws Exception;
+	public MenuEntity findMenuByName(String name) throws Exception;
 
-	public Long validateRepeatPath(String path) throws Exception;
+	public MenuEntity findMenuByPath(String path) throws Exception;
 	
 }

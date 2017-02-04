@@ -86,13 +86,13 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuEntity, MenuQuery, Long
 
 	@Override
 	public Boolean validateRepeatName(String name,Long id) throws Exception {
-		Long pId = menuDao.validateRepeatName(name);
-		if(pId==null){
+		MenuEntity pMenu = menuDao.findMenuByName(name);
+		if(pMenu==null){
 			return true;
-		}else if(pId!=null&&id==null){
+		}else if(pMenu.getId()!=null&&id==null){
 			return false;
-		}else if(pId!=null&&id!=null){
-			return pId==id;
+		}else if(pMenu.getId()!=null&&id!=null){
+			return pMenu.getId()==id;
 		}else{
 			return false;
 		}
@@ -100,13 +100,13 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuEntity, MenuQuery, Long
 
 	@Override
 	public Boolean validateRepeatPath(String path,Long id) throws Exception {
-		Long pId = menuDao.validateRepeatPath(path);
-		if(pId==null){
+		MenuEntity pMenu = menuDao.findMenuByPath(path);
+		if(pMenu==null){
 			return true;
-		}else if(pId!=null&&id==null){
+		}else if(pMenu.getId()!=null&&id==null){
 			return false;
-		}else if(pId!=null&&id!=null){
-			return pId==id;
+		}else if(pMenu.getId()!=null&&id!=null){
+			return pMenu.getId()==id;
 		}else{
 			return false;
 		}

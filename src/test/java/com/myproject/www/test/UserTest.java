@@ -1,7 +1,10 @@
 package com.myproject.www.test;
 
+import static org.junit.Assert.*;
+
 import javax.annotation.Resource;
 //import javax.validation.Validator;
+
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
@@ -41,6 +44,15 @@ public class UserTest {
 		}else{
 			System.out.println("用户添加失败");
 		}
+	}
+	
+	@Test
+	public void validateUser() throws Exception {
+		System.out.println(userService.validateRepeatUsername("lx027881", null));
+		System.out.println(userService.validateRepeatUsername("lx02788", null));
+		System.out.println(userService.validateRepeatEmail("565180713@qq.com", null));
+		System.out.println(userService.validateRepeatMobile("15982554545", null));
+		System.out.println(userService.validateRepeatIdCard("510124199107034911", null));
 	}
 	
 	public static void main(String[] args) {

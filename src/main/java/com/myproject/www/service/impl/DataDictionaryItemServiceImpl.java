@@ -1,5 +1,7 @@
 package com.myproject.www.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class DataDictionaryItemServiceImpl extends BaseServiceImpl<DataDictionar
 		}else{
 			return Message.getMessage(MessageTypeEnum.failure,MessageAlias.DATA_DICTIONARY_ADD_FAILURE);
 		}
+	}
+
+	@Override
+	public List<DataDictionaryItemEntity> findItemByDataDictionaryCode(String dictionaryCode) throws Exception {
+		return dataDictionaryItemDao.findItemByDataDictionaryCode(dictionaryCode);
 	}
 	
 }

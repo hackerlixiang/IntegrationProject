@@ -1,14 +1,13 @@
 package com.myproject.www.websocket;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
-
-import javax.servlet.http.HttpSession;
-
-import java.applet.AppletContext;
-import java.util.Map;
 
 /**
  * Created by zhuqiang on 2015/6/22 0022.

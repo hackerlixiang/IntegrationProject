@@ -12,6 +12,10 @@ public class DataDictionaryItemBean extends BaseBean {
 	@Validate
 	private String name;
 	
+	/** 数据字典项对应数据字典CODE */
+	@Validate
+	private String dataDictionaryCode;
+	
 	/** 数据字典项对应数据字典ID */
 	@Validate
 	private Long dataDictionaryId;
@@ -30,6 +34,14 @@ public class DataDictionaryItemBean extends BaseBean {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDataDictionaryCode() {
+		return dataDictionaryCode;
+	}
+
+	public void setDataDictionaryCode(String dataDictionaryCode) {
+		this.dataDictionaryCode = dataDictionaryCode;
 	}
 
 	public Long getDataDictionaryId() {

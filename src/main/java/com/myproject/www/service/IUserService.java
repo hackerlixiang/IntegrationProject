@@ -27,4 +27,40 @@ public interface IUserService extends IBaseService<UserEntity, UserQuery, Long>{
 	 * @return 消息
 	 */
 	public Message save(UserBean userBean) throws Exception;
+	
+	/**
+	 * 验证用户名是否重复
+	 * @param username 需要验证的用户名
+	 * @param id 需要验证的用户ID
+	 * 
+	 * @return true（不重复）,false（重复）
+	 */
+	public Boolean validateRepeatUsername(String username,Long id) throws Exception;
+	
+	/**
+	 * 验证用户身份证是否重复
+	 * @param idCard 需要验证的用户身份证
+	 * @param id 需要验证的用户ID
+	 * 
+	 * @return true（不重复）,false（重复）
+	 */
+	public Boolean validateRepeatIdCard(String idCard,Long id) throws Exception;
+	
+	/**
+	 * 验证用户邮箱是否重复
+	 * @param email 需要验证的用户邮箱
+	 * @param id 需要验证的用户ID
+	 * 
+	 * @return true（不重复）,false（重复）
+	 */
+	public Boolean validateRepeatEmail(String email,Long id) throws Exception;
+	
+	/**
+	 * 验证用户手机号是否重复
+	 * @param mobile 需要验证的用户手机号
+	 * @param id 需要验证的用户ID
+	 * 
+	 * @return true（不重复）,false（重复）
+	 */
+	public Boolean validateRepeatMobile(String mobile,Long id) throws Exception;
 }

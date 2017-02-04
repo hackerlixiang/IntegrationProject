@@ -68,5 +68,63 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity, UserQuery, Long
 			return Message.getFailureMessage(MessageAlias.USER_ADD_FAILURE);
 		}
 	}
+
+	@Override
+	public Boolean validateRepeatUsername(String username, Long id) throws Exception {
+		UserEntity pUser = userDao.findUserByUsername(username);
+		if(pUser==null){
+			return true;
+		}else if(pUser.getId()!=null&&id==null){
+			return false;
+		}else if(pUser.getId()!=null&&id!=null){
+			return pUser.getId()==id;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean validateRepeatIdCard(String idCard, Long id) throws Exception {
+		UserEntity pUser = userDao.findUserByIdCard(idCard);
+		if(pUser==null){
+			return true;
+		}else if(pUser.getId()!=null&&id==null){
+			return false;
+		}else if(pUser.getId()!=null&&id!=null){
+			return pUser.getId()==id;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean validateRepeatEmail(String email, Long id) throws Exception {
+		UserEntity pUser = userDao.findUserByEmail(email);
+		if(pUser==null){
+			return true;
+		}else if(pUser.getId()!=null&&id==null){
+			return false;
+		}else if(pUser.getId()!=null&&id!=null){
+			return pUser.getId()==id;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean validateRepeatMobile(String mobile, Long id) throws Exception {
+		UserEntity pUser = userDao.findUserByMobile(mobile);
+		if(pUser==null){
+			return true;
+		}else if(pUser.getId()!=null&&id==null){
+			return false;
+		}else if(pUser.getId()!=null&&id!=null){
+			return pUser.getId()==id;
+		}else{
+			return false;
+		}
+	}
+	
+	
 	
 }

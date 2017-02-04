@@ -18,4 +18,5 @@ public interface IDataDictionaryService extends IBaseService<DataDictionaryEntit
 	 * @return 消息
 	 */
 	public Message save(DataDictionaryBean dataDictionaryBean) throws Exception;
+
 }

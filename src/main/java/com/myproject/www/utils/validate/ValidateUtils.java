@@ -71,7 +71,12 @@ public class ValidateUtils {
             	return false;
             }
         }
-         
+        
+        // 字段可以为空且值为空的情况下不再继续验证
+        if(CommonUtils.isNullOrEmpty(value)){
+        	return true;
+        }
+        
         if(value.toString().length()>validate.maxLength()&&validate.maxLength()!=0){
         	Log.error(description+"长度不能超过"+validate.maxLength());
         	return false;

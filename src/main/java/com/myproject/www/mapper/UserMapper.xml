@@ -5,13 +5,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.myproject.www.dao.IUserDao"><!-- 为当前映射关系创建的命名空间 -->
 
 <!-- 用户列表 -->
-<resultMap type="UserEntity" id="userList"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
+<resultMap type="UserEntity" id="userMap"><!-- type：表示返回的对象类型，id：为该映射设置一个名称 -->
 	<!-- id/result ：对应这属性的映射。property为模型中的属性，column为表中的列 -->
 	<id property="id" column="id"/><!-- id 一般用于映射主键,可以提高速度 -->
 	<result property="createDate" column="create_date"/><!-- result 一般对于普通的属性 -->
 	<result property="updateDate" column="update_date"/>
 	<result property="username" column="username"/>
 	<result property="password" column="password"/>
+	<result property="name" column="name"/>
+	<result property="nickName" column="nick_name"/>
+	<result property="birthday" column="birthday"/>
+	<result property="age" column="age"/>
+	<result property="sex" column="sex"/>
+	<result property="idCard" column="id_card"/>
+	<result property="email" column="email"/>
+	<result property="mobile" column="mobile"/>
+	<result property="homeAddress" column="home_address"/>
+	<result property="registIp" column="regist_ip"/>
+	<result property="registIp" column="login_ip"/>
+	<result property="headPortrait" column="head_portrait"/>
 </resultMap>
 
 <sql id="sql_count"> SELECT COUNT(u.id) FROM t_user u </sql>
@@ -30,9 +42,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES 
 			(now(),now(),#{username},#{password},#{name},#{nickName},#{birthday},#{age},#{sex},#{idCard},#{email},#{mobile},#{homeAddress},#{registIp},#{loginIp},#{headPortrait})
 	</insert>
+	
+	<!-- 根据用户名获取用户 -->
+	<select id="findUserByUsername" parameterType="String" resultMap="userMap">
+		<include refid="sql_result"/> <where> u.username = #{username}</where>
+	</select>
+	
+	<!-- 根据身份证号获取用户 -->
+	<select id="findUserByIdCard" parameterType="String" resultMap="userMap">
+		<include refid="sql_result"/> <where> u.id_card = #{idCard}</where>
+	</select>
+	
+	<!-- 根据邮箱获取用户 -->
+	<select id="findUserByEmail" parameterType="String" resultMap="userMap">
+		<include refid="sql_result"/> <where> u.email = #{email}</where>
+	</select>
+	
+	<!-- 根据手机号获取用户 -->
+	<select id="findUserByMobile" parameterType="String" resultMap="userMap">
+		<include refid="sql_result"/> <where> u.mobile = #{mobile}</where>
+	</select>
 
 	<!-- 获取菜单页列表 -->
-	<select id="findPage" parameterType="userQuery" resultMap="userList">
+	<select id="findPage" parameterType="userQuery" resultMap="userMap">
 		<include refid="sql_result"/>
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">
@@ -43,7 +75,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</foreach>
 			</foreach>
 		</where>
-		<!-- <if test="@com.myproject.www.util.CommonUtils@isNotNullOrEmpty(orders)"> ORDER BY </if> -->
 		<foreach collection="orders" index="key" item="value" open=" ORDER BY " separator=",">
 			u.${key} ${value}
 		</foreach>
@@ -53,12 +84,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 获取过滤后的菜单数量 -->
 	<select id="getFilteredCount" parameterType="userQuery" resultType="Long">
 		<include refid="sql_count"/>
-		<!-- <where>
-			<if test="name!=null and name!=''">m.name 
-				<if test="nameFilter=='eq'">= #{name}</if>
-				<if test="nameFilter=='like'"> LIKE CONCAT('%',#{name},'%') </if> 
-			</if>
-		</where> -->
 	</select>
 	
 	<!-- 获取菜单总数量 -->

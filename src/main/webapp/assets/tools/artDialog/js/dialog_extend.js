@@ -16,8 +16,10 @@ function messageDialog(type,cont){
 	    okValue: '确定',
 	    skin: "",
 	    ok: function () {
-	    	//执行重置按钮事件
-	    	$("button[type='reset']").trigger("click"); 
+	    	if(type=="success"){
+	    		//执行重置按钮事件
+	    		$("button[type='reset']").trigger("click"); 
+	    	}
 	        return true;
 	    }
 	}).show();

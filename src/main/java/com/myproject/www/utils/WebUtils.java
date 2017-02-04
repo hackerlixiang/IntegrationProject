@@ -376,6 +376,9 @@ public final class WebUtils {
         if(StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(ip, "unknown")) {
             ip = request.getRemoteAddr();
         }
+        if("0:0:0:0:0:0:0:1".equals(ip)){
+        	ip = "127.0.0.1";
+        }
         return ip;
     }
 
