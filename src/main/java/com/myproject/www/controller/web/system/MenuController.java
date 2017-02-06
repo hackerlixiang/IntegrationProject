@@ -180,7 +180,7 @@ public class MenuController extends BaseSystemController{
 	 * @param id 菜单id
 	 * @return 是否重复
 	 */
-	@RequestMapping(value="/validateRepeatName",method=RequestMethod.POST)
+	@RequestMapping(value="/validate_repeat_name",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatName(String name,Long id) throws Exception{
 		return menuService.validateRepeatName(name,id);
@@ -192,7 +192,7 @@ public class MenuController extends BaseSystemController{
 	 * @param id 菜单id
 	 * @return 是否重复
 	 */
-	@RequestMapping(value="/validateRepeatPath",method=RequestMethod.POST)
+	@RequestMapping(value="/validate_repeat_path",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatPath(String path,Long id) throws Exception{
 		return menuService.validateRepeatPath(path,id);

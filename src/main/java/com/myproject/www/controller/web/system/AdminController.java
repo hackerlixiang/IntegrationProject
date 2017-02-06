@@ -12,25 +12,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myproject.www.bean.UserBean;
+import com.myproject.www.bean.AdminBean;
+import com.myproject.www.entity.AdminEntity;
 import com.myproject.www.entity.DataDictionaryItemEntity;
-import com.myproject.www.entity.UserEntity;
-import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
 import com.myproject.www.pageQuery.Pagination;
-import com.myproject.www.pageQuery.query.UserQuery;
+import com.myproject.www.pageQuery.query.AdminQuery;
+import com.myproject.www.service.IAdminService;
 import com.myproject.www.service.IDataDictionaryItemService;
 import com.myproject.www.service.IDataDictionaryService;
-import com.myproject.www.service.IUserService;
 
 @Controller
-@RequestMapping("/system/user")
+@RequestMapping("/system/admin")
 @Scope("prototype")
-public class UserController extends BaseSystemController{
+public class AdminController extends BaseSystemController{
 	
-	@Resource(name="userServiceImpl")
-	private IUserService userService;
+	@Resource(name="adminServiceImpl")
+	private IAdminService adminService;
 	
 	@Resource(name="dataDictionaryServiceImpl")
 	private IDataDictionaryService dataDictionaryService;
@@ -39,7 +38,7 @@ public class UserController extends BaseSystemController{
 	private IDataDictionaryItemService dataDictionaryItemService;
 	
 	/**
-	 * 跳转至用户列表页面
+	 * 跳转至管理员列表页面
 	 * @param request
 	 * @return 视图模型对象
 	 */
@@ -50,20 +49,20 @@ public class UserController extends BaseSystemController{
 	}
 	
 	/**
-	 * 获取用户列表数据
+	 * 获取管理员列表数据
 	 * @param request
 	 * @param query 查询参数
 	 * @return 列表数据
 	 */
 	@RequestMapping(value="/getData",method = RequestMethod.POST)
 	@ResponseBody
-	public Pagination<UserEntity> getData(HttpServletRequest request,UserQuery query) throws Exception{
-		Pagination<UserEntity> pagination = userService.findPage(query);
+	public Pagination<AdminEntity> getData(HttpServletRequest request,AdminQuery query) throws Exception{
+		Pagination<AdminEntity> pagination = adminService.findPage(query);
 		return pagination;
 	}
 	
 	/**
-	 * 跳转至用户添加页面
+	 * 跳转至管理员添加页面
 	 * @param request
 	 * @return 视图模型对象
 	 */
@@ -79,76 +78,78 @@ public class UserController extends BaseSystemController{
 	}
 	
 	/**
-	 * 添加用户
-	 * @param menuBean 用户Bean
+	 * 添加管理员
+	 * @param menuBean 管理员Bean
 	 * @return 添加结果消息
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
-	public Message add(UserBean userBean,HttpServletRequest request) throws Exception{
+	public Message add(AdminBean adminBean,HttpServletRequest request) throws Exception{
 		
-		userService.perBeforeHandleUser(userBean, request);
+		//处理表单参数
+		adminService.perBeforeHandleAdmin(adminBean, request);
 		
-		//用户Bean验证
-		if(!valid(userBean)){
-			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.USER_PARAM_ERROR);
+		//管理员Bean验证
+		if(!valid(adminBean)){
+			return Message.getWarningMessage(MessageAlias.ADMIN_PARAM_ERROR);
 		}
 		
-		//添加用户
-		return userService.save(userBean);
+		//添加管理员
+		return adminService.save(adminBean);
+		
 	}
 	
 	
 	/**
-	 * 验证用户名是否重复
-	 * @param username 需要验证的用户名
-	 * @param id 需要验证的用户ID
+	 * 验证管理员名是否重复
+	 * @param username 需要验证的管理员名
+	 * @param id 需要验证的管理员ID
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/validate_repeat_username",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatUsername(String username,Long id) throws Exception{
-		return userService.validateRepeatUsername(username,id);
+		return adminService.validateRepeatUsername(username,id);
 	}
 	
 	/**
-	 * 验证用户身份证是否重复
-	 * @param idCard 需要验证的用户身份证
-	 * @param id 需要验证的用户ID
+	 * 验证管理员身份证是否重复
+	 * @param idCard 需要验证的管理员身份证
+	 * @param id 需要验证的管理员ID
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/validate_repeat_idcard",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatIdCard(String idCard,Long id) throws Exception{
-		return userService.validateRepeatIdCard(idCard,id);
+		return adminService.validateRepeatIdCard(idCard,id);
 	}
 	
 	/**
-	 * 验证用户邮箱是否重复
-	 * @param email 需要验证的用户邮箱
-	 * @param id 需要验证的用户ID
+	 * 验证管理员邮箱是否重复
+	 * @param email 需要验证的管理员邮箱
+	 * @param id 需要验证的管理员ID
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/validate_repeat_email",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatEmail(String email,Long id) throws Exception{
-		return userService.validateRepeatEmail(email,id);
+		return adminService.validateRepeatEmail(email,id);
 	}
 	
 	/**
-	 * 验证用户手机号是否重复
-	 * @param mobile 需要验证的用户手机号
-	 * @param id 需要验证的用户ID
+	 * 验证管理员手机号是否重复
+	 * @param mobile 需要验证的管理员手机号
+	 * @param id 需要验证的管理员ID
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/validate_repeat_mobile",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean validateRepeatMobile(String mobile,Long id) throws Exception{
-		return userService.validateRepeatMobile(mobile,id);
+		return adminService.validateRepeatMobile(mobile,id);
 	}
 	
 }

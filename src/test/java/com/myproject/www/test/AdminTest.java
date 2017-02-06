@@ -1,10 +1,7 @@
 package com.myproject.www.test;
 
-import static org.junit.Assert.*;
-
 import javax.annotation.Resource;
 //import javax.validation.Validator;
-
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
@@ -12,22 +9,22 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.myproject.www.bean.UserBean;
+import com.myproject.www.bean.AdminBean;
 import com.myproject.www.others.Message;
-import com.myproject.www.service.IUserService;
+import com.myproject.www.service.IAdminService;
 import com.myproject.www.utils.IdCardUtils;
 import com.myproject.www.utils.validate.ValidateUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/config/xml/spring-core.xml")
-public class UserTest {
+public class AdminTest {
 	
 	@Resource(name="userServiceImpl")
-	private IUserService userService;
+	private IAdminService userService;
 	
 	@Test
 	public void addTest() throws Exception {
-		UserBean userBean = new UserBean();
+		AdminBean userBean = new AdminBean();
 		userBean.setUsername("lx02788");
 		userBean.setPassword("02768LX");
 		userBean.setName("阿萨德");
@@ -35,9 +32,8 @@ public class UserTest {
 		userBean.setIdCard("510124199107034911");
 		userBean.setEmail("565180713@qq.com");
 		userBean.setMobile("15982554545");
-		userBean.setHomeAddress("啊实打实的-aA-ddd");
 		userBean.setRegistIp("192.168.151.22");
-		userService.perBeforeHandleUser(userBean, null);
+		userService.perBeforeHandleAdmin(userBean, null);
 		if(ValidateUtils.valid(userBean)){
 			Message msg = userService.save(userBean);
 			System.out.println(msg.getContent());

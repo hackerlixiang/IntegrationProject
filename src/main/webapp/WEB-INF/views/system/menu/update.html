@@ -108,7 +108,7 @@
 						minlength: 2,
 						maxlength: 8,
 						remote: {
-							url: "/system/menu/validateRepeatName",
+							url: "/system/menu/validate_repeat_name",
 							type: "post",
 							data:{
 								id:function(){return $("#id").val()}
@@ -119,7 +119,7 @@
 						required: true,
 						matching:/\/\w\S/,
 						remote: {
-							url: "/system/menu/validateRepeatPath",
+							url: "/system/menu/validate_repeat_path",
 							type: "post",
 							data:{
 								id:function(){return $("#id").val()}

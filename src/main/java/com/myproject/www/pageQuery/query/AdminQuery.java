@@ -1,10 +1,10 @@
 package com.myproject.www.pageQuery.query;
 
-import com.myproject.www.entity.UserEntity;
+import com.myproject.www.entity.AdminEntity;
 
-public class UserQuery extends BaseQuery<UserEntity>{
+public class AdminQuery extends BaseQuery<AdminEntity>{
 	
-	public UserQuery() {}
+	public AdminQuery() {}
 	
 	/** 菜单名 */
 	private String username;

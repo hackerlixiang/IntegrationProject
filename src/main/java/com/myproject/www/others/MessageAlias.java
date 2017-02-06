@@ -16,16 +16,16 @@ public interface MessageAlias {
 	public static final String MENU_DELETE_FAILURE = "MenuDeleteFailure";//菜单删除失败
 	public static final String MENU_UPDATE_FAILURE = "MenuUpdateFailure";//菜单修改失败
 	
-	/* -----------------------------------------------------------用户提示消息--------------------------------------------------------------------- */
-	public static final String USER_PARAM_ERROR = "UserParamError";//参数错误
+	/* -----------------------------------------------------------管理员提示消息--------------------------------------------------------------------- */
+	public static final String ADMIN_PARAM_ERROR = "AdminParamError";//参数错误
 	
-	public static final String USER_ADD_SUCCESS = "UserAddSuccess";//用户添加成功
-	public static final String USER_DELETE_SUCCESS = "UserDeleteSuccess";//用户删除成功
-	public static final String USER_UPDATE_SUCCESS = "UserUpdateSuccess";//用户修改成功
+	public static final String ADMIN_ADD_SUCCESS = "AdminAddSuccess";//管理员添加成功
+	public static final String ADMIN_DELETE_SUCCESS = "AdminDeleteSuccess";//管理员删除成功
+	public static final String ADMIN_UPDATE_SUCCESS = "AdminUpdateSuccess";//管理员修改成功
 	                           
-	public static final String USER_ADD_FAILURE = "UserAddFailure";//用户添加失败
-	public static final String USER_DELETE_FAILURE = "UserDeleteFailure";//用户删除失败
-	public static final String USER_UPDATE_FAILURE = "UserUpdateFailure";//用户修改失败
+	public static final String ADMIN_ADD_FAILURE = "AdminAddFailure";//管理员添加失败
+	public static final String ADMIN_DELETE_FAILURE = "AdminDeleteFailure";//管理员删除失败
+	public static final String ADMIN_UPDATE_FAILURE = "AdminUpdateFailure";//管理员修改失败
 
 	/* ----------------------------------------------------------数据字典提示消息-------------------------------------------------------------------- */
 	public static final String DATA_DICTIONARY_ADD_SUCCESS = "DataDictionaryAddSuccess";//数据字典添加成功

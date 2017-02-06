@@ -5,7 +5,12 @@ import java.util.Date;
 import com.myproject.www.utils.validate.RegexType;
 import com.myproject.www.utils.validate.annon.Validate;
 
-public class UserBean extends BaseBean {
+/**
+ * 管理员Bean
+ * @author lixiang
+ * 
+ */
+public class AdminBean extends BaseBean {
 
 	/** 用户名 */
 	@Validate(minLength=6,maxLength=15)
@@ -43,9 +48,6 @@ public class UserBean extends BaseBean {
 	/** 手机号 */
 	@Validate(regexType = RegexType.MOBILE)
 	private String mobile;
-
-	/** 家庭住址 */
-	private String homeAddress;
 
 	/** 注册IP */
 	@Validate(regexType = RegexType.IP)
@@ -135,14 +137,6 @@ public class UserBean extends BaseBean {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-
-	public String getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
 	}
 
 	public String getRegistIp() {

@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.myproject.www.pageQuery.query.MenuQuery" alias="menuQuery"/>
 		<typeAlias type="com.myproject.www.entity.MenuEntity" alias="MenuEntity"/>
 		
-		<typeAlias type="com.myproject.www.pageQuery.query.UserQuery" alias="userQuery"/>
-		<typeAlias type="com.myproject.www.entity.UserEntity" alias="UserEntity"/>
+		<typeAlias type="com.myproject.www.pageQuery.query.AdminQuery" alias="AdminQuery"/>
+		<typeAlias type="com.myproject.www.entity.AdminEntity" alias="AdminEntity"/>
 		
 		<typeAlias type="com.myproject.www.pageQuery.query.DataDictionaryQuery" alias="DataDictionaryQuery"/>
 		<typeAlias type="com.myproject.www.entity.DataDictionaryEntity" alias="DataDictionaryEntity"/>
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="com/myproject/www/mapper/DepartmentMapper.xml" />
 		<mapper resource="com/myproject/www/mapper/MenuMapper.xml" />
-		<mapper resource="com/myproject/www/mapper/UserMapper.xml" />
+		<mapper resource="com/myproject/www/mapper/AdminMapper.xml" />
 		<mapper resource="com/myproject/www/mapper/DataDictionaryMapper.xml" />
 		<mapper resource="com/myproject/www/mapper/DataDictionaryItemMapper.xml" />
 	</mappers>

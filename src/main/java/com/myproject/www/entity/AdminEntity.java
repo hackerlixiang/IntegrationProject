@@ -3,11 +3,11 @@ package com.myproject.www.entity;
 import java.util.Date;
 
 /**
- * 用户实体
+ * 管理员实体
  * 
  * @author lixiang
  */
-public class UserEntity extends BaseEntity {
+public class AdminEntity extends BaseEntity {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 5888524617375324430L;
@@ -41,9 +41,6 @@ public class UserEntity extends BaseEntity {
 	
 	/** 手机号 */
 	private String mobile;
-	
-	/** 家庭住址 */
-	private String homeAddress;
 
 	/** 注册IP */
 	private String registIp;
@@ -132,14 +129,6 @@ public class UserEntity extends BaseEntity {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-
-	public String getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
 	}
 
 	public String getRegistIp() {

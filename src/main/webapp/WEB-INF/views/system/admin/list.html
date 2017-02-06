@@ -19,7 +19,10 @@
 	                <th>创建时间</th>
 	                <th>修改时间</th>
 	                <th>用户名</th>
-	                <th>密码</th>
+	                <th>昵称</th>
+	                <th>年龄</th>
+	                <th>性别</th>
+	                <th>手机号</th>
 	            </tr>
 	        </thead>
 	        <tfoot>
@@ -28,7 +31,10 @@
 	                <th>创建时间</th>
 	                <th>修改时间</th>
 	                <th>用户名</th>
-	                <th>密码</th>
+	                <th>昵称</th>
+	                <th>年龄</th>
+	                <th>性别</th>
+	                <th>手机号</th>
 	            </tr>
 	        </tfoot>
 	    </table>
@@ -55,10 +61,13 @@
 					{"data": "createDate", "sType": "string"},
 					{"data": "updateDate", "sType": "string"},
 					{"data": "username", "sType": "string","orderable": false},
-					{"data": "password", "sType": "string","orderable": false}
+					{"data": "nickName", "sType": "string","orderable": false},
+					{"data": "age", "sType": "string","orderable": false},
+					{"data": "sex", "sType": "string","orderable": false},
+					{"data": "mobile", "sType": "string","orderable": false}
 		        ],
 		        "ajax": {
-		            "url": "/system/user/getData",
+		            "url": "/system/admin/getData",
 		            "type": "POST",
 		            "dataSrc": "data",
 		            "data": function(d){
