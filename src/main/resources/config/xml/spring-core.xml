@@ -24,7 +24,7 @@
     	   ">
 
 	<!-- 引用数据库连接配置 -->
-	<context:property-placeholder location="classpath:config/properties/db.properties" />
+	<context:property-placeholder location="classpath:config/properties/setting.properties" />
 	
 	<import resource="classpath:config/xml/spring-mvc.xml"/>
 	<import resource="classpath:config/xml/freemarker.xml"/>

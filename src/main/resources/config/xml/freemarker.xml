@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
 	<!-- freemarker环境配置 -->
-	<bean id="freemarkerConfig"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="/WEB-INF/views/" /><!-- freemarker模板位置 -->
+		
 		<property name="freemarkerSettings">
 			<props>
 				<prop key="defaultEncoding">UTF-8</prop>
@@ -22,10 +22,17 @@
 				<prop key="template_update_delay">0</prop>
 			</props>
 		</property>
+		
+		<property name="freemarkerVariables">
+			<map>
+				<!-- 基本变量 -->
+				<entry key="baseUrl" value="${baseSetting.baseUrl}" />
+			</map>
+		</property>
 	</bean>
+	
 	<!--  对转向页面的路径解析   prefix前缀指定视图文件的目录，suffix指定后缀名-->  	
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="contentType" value="text/html;charset=UTF-8"></property>
 		<property name="prefix" value="" />
 		<property name="suffix" value=".html" />

@@ -24,17 +24,14 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
-	<bean id="simpleUrlMapping"
-		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="order" value="0" />
 	</bean>
 	<!-- Spring默认的映射器 -->
 	<!-- 系统先用simpleUrlMapping去找资源，找不到再用beanNameUrlMapping去找一次。 -->
-	<bean id="beanNameUrlMapping"
-		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+	<bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
-	
 	<bean id="exceptionResolver" class="com.myproject.www.exception.SystemSimpleMappingExceptionResolver"></bean>
 
 	<!-- 拦截器 -->
