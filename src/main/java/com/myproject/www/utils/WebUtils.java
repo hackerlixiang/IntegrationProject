@@ -1,8 +1,10 @@
 package com.myproject.www.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -377,8 +379,13 @@ public final class WebUtils {
             ip = request.getRemoteAddr();
         }
         if("0:0:0:0:0:0:0:1".equals(ip)){
-        	ip = "127.0.0.1";
-        }
+			 try {
+			 InetAddress address = InetAddress.getLocalHost();
+			 	ip = address.getHostAddress();
+			 } catch (UnknownHostException e) {
+				 e.printStackTrace();
+			 }
+		}
         return ip;
     }
 
