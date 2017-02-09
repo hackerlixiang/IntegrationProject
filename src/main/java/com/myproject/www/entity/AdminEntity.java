@@ -3,9 +3,11 @@ package com.myproject.www.entity;
 import java.util.Date;
 
 /**
- * 管理员实体
+ * 管理员Entity
  * 
  * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class AdminEntity extends BaseEntity {
 

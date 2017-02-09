@@ -6,10 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Utils - DefaultValue
+ * 日期工具类
  * 
  * @author lixiang
- * @version 1.0
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils{
 	

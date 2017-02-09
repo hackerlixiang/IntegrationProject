@@ -6,6 +6,13 @@ import java.util.List;
 import com.myproject.www.entity.BaseEntity;
 import com.myproject.www.pageQuery.query.BaseQuery;
 
+/**
+ * 基础Dao
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public interface IBaseDao<T extends BaseEntity,Q extends BaseQuery<T>,ID extends Serializable> {
 	
 	public Long add(T t) throws Exception;

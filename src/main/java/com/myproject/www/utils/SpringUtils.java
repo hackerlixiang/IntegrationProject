@@ -11,10 +11,11 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.LocaleResolver;
 
 /**
- * Utils - Spring
+ * Spring工具类
  * 
  * @author lixiang
- * @version 1.0
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 @Component("springUtils")
 @Lazy(false)

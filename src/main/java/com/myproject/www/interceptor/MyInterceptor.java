@@ -6,6 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 拦截器
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class MyInterceptor implements HandlerInterceptor{
 	//该方法也是需要preHandle方法的返回值为true时才会执行,在整个请求结束之后
 	@Override

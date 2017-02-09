@@ -18,6 +18,13 @@ import com.myproject.www.cache.CacheHandler;
 import com.myproject.www.entity.MenuEntity;
 import com.myproject.www.service.IMenuService;
 
+/**
+ * 主页Controller
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 @Controller
 @RequestMapping("/system/index")
 @Scope("prototype")

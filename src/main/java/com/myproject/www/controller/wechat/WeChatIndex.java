@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myproject.www.controller.web.system.BaseSystemController;
 
-
+/**
+ * 微信Controller
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 @Controller
 @RequestMapping("/wechat")
 @Scope("prototype")

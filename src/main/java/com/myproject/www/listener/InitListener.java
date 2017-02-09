@@ -12,6 +12,12 @@ import com.myproject.www.service.IMenuService;
 
 import net.sf.ehcache.Element;
 
+/**
+ * 初始化监听器
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 @Component("initListener")
 public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 

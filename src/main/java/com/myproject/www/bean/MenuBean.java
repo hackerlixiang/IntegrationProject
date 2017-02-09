@@ -3,9 +3,11 @@ package com.myproject.www.bean;
 import com.myproject.www.utils.validate.annon.Validate;
 
 /**
- * 菜单添加修改Bean
+ * 菜单Bean
+ * 
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class MenuBean extends BaseBean{
 	

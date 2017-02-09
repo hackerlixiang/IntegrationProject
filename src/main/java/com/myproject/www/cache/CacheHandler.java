@@ -2,17 +2,24 @@ package com.myproject.www.cache;
 
 import javax.annotation.Resource;
 
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
+
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
 
 import com.myproject.www.exception.EhcacheException;
 import com.myproject.www.utils.StringUtils;
 
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.Element;
-
+/**
+ * 缓存处理
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 @Component("CacheHandler")
 public class CacheHandler{
 	
@@ -73,6 +80,7 @@ public class CacheHandler{
      * 删除所有缓存
      */
     public void removeAllCache(){
+    	cacheManager.removeAllCaches();
     	cacheManager.removalAll();
     }
     

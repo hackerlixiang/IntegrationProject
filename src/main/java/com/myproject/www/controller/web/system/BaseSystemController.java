@@ -28,6 +28,13 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import com.myproject.www.utils.StringUtils;
 import com.myproject.www.utils.validate.ValidateUtils;
 
+/**
+ * 基础Controller
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class BaseSystemController {
 
 	public static final String redirectUrl = "redirect:/system/index/index";

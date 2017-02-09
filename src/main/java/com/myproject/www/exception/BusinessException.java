@@ -1,5 +1,12 @@
 package com.myproject.www.exception;
 
+/**
+ * 业务异常Exception
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class BusinessException extends RuntimeException{
 
 	/** serialVersionUID */

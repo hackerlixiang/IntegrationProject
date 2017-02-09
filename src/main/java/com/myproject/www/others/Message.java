@@ -3,14 +3,22 @@ package com.myproject.www.others;
 import java.util.Arrays;
 
 import com.myproject.www.enums.MessageTypeEnum;
-import com.myproject.www.exception.MessageTypeMismatchException;
+import com.myproject.www.exception.MessageTypeException;
 import com.myproject.www.utils.SpringUtils;
 import com.myproject.www.utils.StringUtils;
 
+/**
+ * 消息
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public final class Message {
 	
+	/** 消息类型 */
 	private MessageTypeEnum type;
 	
+	/** 消息内容 */
 	private String content;
 
 	private Message(){
@@ -59,7 +67,7 @@ public final class Message {
 	public static Message getMessage(MessageTypeEnum type, String code){
 		MessageTypeEnum[] typs = MessageTypeEnum.values();
 		if(!Arrays.asList(typs).contains(type)){
-			throw new MessageTypeMismatchException();
+			throw new MessageTypeException();
 		}
 		if(StringUtils.isBlank(code)){
 			code = MessageAlias.MESSAGE_UNDEFINED;
@@ -76,7 +84,7 @@ public final class Message {
 	public static Message addMessage(MessageTypeEnum type, String content){
 		MessageTypeEnum[] typs = MessageTypeEnum.values();
 		if(!Arrays.asList(typs).contains(type)){
-			throw new MessageTypeMismatchException();
+			throw new MessageTypeException();
 		}
 		return new Message(type,content);
 	}

@@ -6,10 +6,12 @@ import com.myproject.www.bean.MenuBean;
 import com.myproject.www.entity.MenuEntity;
 import com.myproject.www.others.Message;
 import com.myproject.www.pageQuery.query.MenuQuery;
+
 /**
  * 菜单Service
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IMenuService extends IBaseService<MenuEntity, MenuQuery, Long>{
 	

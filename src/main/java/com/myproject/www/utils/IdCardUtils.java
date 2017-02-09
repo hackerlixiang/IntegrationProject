@@ -9,8 +9,9 @@ import java.util.Map;
 /**
  * 身份证工具类
  *
- * @author June
- * @version 1.0, 2010-06-17
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class IdCardUtils {
 	

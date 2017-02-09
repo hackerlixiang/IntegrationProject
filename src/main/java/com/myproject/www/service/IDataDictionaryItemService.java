@@ -8,9 +8,10 @@ import com.myproject.www.others.Message;
 import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 
 /**
- * 数据字典项 Service
+ * 数据字典项Service
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IDataDictionaryItemService extends IBaseService<DataDictionaryItemEntity, DataDictionaryItemQuery, Long>{
 	

@@ -10,6 +10,8 @@ import com.myproject.www.utils.validate.RegexType;
 /**
  * 数据验证
  * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.PARAMETER})

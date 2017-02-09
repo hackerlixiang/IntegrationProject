@@ -10,7 +10,11 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 
 /**
- * Created by zhuqiang on 2015/6/22 0022.
+ * websocket
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class HandshakeInterceptor implements org.springframework.web.socket.server.HandshakeInterceptor {
 

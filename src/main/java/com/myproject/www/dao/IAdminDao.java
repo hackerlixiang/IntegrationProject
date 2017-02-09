@@ -5,8 +5,10 @@ import com.myproject.www.pageQuery.query.AdminQuery;
 
 /**
  * 管理员Dao
+ * 
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IAdminDao extends IBaseDao<AdminEntity, AdminQuery, Long>{
 

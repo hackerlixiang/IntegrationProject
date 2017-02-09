@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.myproject.www.entity.Department;
 
+/**
+ * 部门Dao
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public interface IDepartmentDao {
 	public void add(Department department) throws Exception;
 	

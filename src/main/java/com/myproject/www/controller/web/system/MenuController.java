@@ -23,6 +23,13 @@ import com.myproject.www.pageQuery.Pagination;
 import com.myproject.www.pageQuery.query.MenuQuery;
 import com.myproject.www.service.IMenuService;
 
+/**
+ * 菜单Controller
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 @Controller
 @RequestMapping("/system/menu")
 @Scope("prototype")

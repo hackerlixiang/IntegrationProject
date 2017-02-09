@@ -14,6 +14,12 @@ import com.myproject.www.utils.CommonUtils;
 import com.myproject.www.utils.JsonUtils;
 import com.myproject.www.utils.StringUtils;
 
+/**
+ * 基础查询VO
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class BaseQuery<E extends BaseEntity> {
 	
 	/** 每页显示条数 */

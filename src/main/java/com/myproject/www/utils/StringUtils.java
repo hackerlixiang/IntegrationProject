@@ -7,10 +7,11 @@ import java.nio.charset.Charset;
 import java.util.Date;
 
 /**
- * Utils - DefaultValue
+ * String工具类
  * 
  * @author lixiang
- * @version 1.0
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public final class StringUtils extends org.apache.commons.lang3.StringUtils{
 	

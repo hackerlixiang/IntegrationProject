@@ -17,9 +17,11 @@ import java.util.Map;
 
 import javax.crypto.Cipher;
 
-/**
- * @author lixiang 
- * @date 2017-01-04 
+/** 
+ * RSA编码解码工具包 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class RSAUtils {  
   

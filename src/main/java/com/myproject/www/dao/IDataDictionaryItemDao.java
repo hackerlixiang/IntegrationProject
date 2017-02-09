@@ -6,9 +6,11 @@ import com.myproject.www.entity.DataDictionaryItemEntity;
 import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 
 /**
- * 数据字典项  Dao
+ * 数据字典项Dao
+ * 
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IDataDictionaryItemDao extends IBaseDao<DataDictionaryItemEntity, DataDictionaryItemQuery, Long>{
 

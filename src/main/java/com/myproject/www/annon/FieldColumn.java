@@ -8,8 +8,10 @@ import java.lang.annotation.Target;
 
 /**
  * 类字段-表列名 对应 注解
+ * 
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

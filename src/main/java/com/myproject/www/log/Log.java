@@ -2,6 +2,12 @@ package com.myproject.www.log;
 
 import org.apache.log4j.Logger;
 
+/**
+ * 日志
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class Log extends Logger{
 	
 	protected Log(String name) {

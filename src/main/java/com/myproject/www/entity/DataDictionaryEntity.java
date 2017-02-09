@@ -5,8 +5,11 @@ import java.util.List;
 
 
 /**
- * 数据字典实体
+ * 数据字典Entity
+ * 
  * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public class DataDictionaryEntity extends BaseEntity{
 	

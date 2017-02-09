@@ -6,10 +6,12 @@ import com.myproject.www.bean.AdminBean;
 import com.myproject.www.entity.AdminEntity;
 import com.myproject.www.others.Message;
 import com.myproject.www.pageQuery.query.AdminQuery;
+
 /**
  * 管理员Service
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IAdminService extends IBaseService<AdminEntity, AdminQuery, Long>{
 	

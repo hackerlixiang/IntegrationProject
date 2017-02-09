@@ -11,16 +11,11 @@ import java.io.OutputStream;
 import org.apache.shiro.codec.Base64;
   
 /** 
- * <p> 
  * BASE64编码解码工具包 
- * </p> 
- * <p> 
- * </p> 
- *  
- * @author lixiang 
- * @date 2017-01-04 
- * @version 1.0 
- */  
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
+ */
 public class Base64Utils {  
   
     /**  

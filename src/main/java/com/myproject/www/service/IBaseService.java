@@ -6,10 +6,12 @@ import java.util.List;
 import com.myproject.www.entity.BaseEntity;
 import com.myproject.www.pageQuery.Pagination;
 import com.myproject.www.pageQuery.query.BaseQuery;
+
 /**
- * BaseService
+ * 基础Service
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public interface IBaseService<T extends BaseEntity,Q extends BaseQuery<T>,ID extends Serializable> {
 	

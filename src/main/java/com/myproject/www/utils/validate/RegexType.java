@@ -3,7 +3,8 @@ package com.myproject.www.utils.validate;
 /**
  * 常用的数据类型枚举
  * @author lixiang
- *
+ * @Version 1.0
+ * @Time 2017年2月9日 下午5:41:03
  */
 public enum RegexType {
      
