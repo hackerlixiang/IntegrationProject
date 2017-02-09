@@ -1,15 +1,7 @@
-/*
- * Copyright 2010-2015 icl-network.com. All rights reserved.
- * Support: http://www.icl-network.com
- */
 package com.myproject.www.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import redis.clients.jedis.Protocol.Command;
-
-import com.myproject.www.test.enumTest.EnumTest;
 
 /**
  * Utils - 字符串缩略工具类

@@ -1,12 +1,7 @@
-/*
- * Copyright 2010-2015 icl-network.com. All rights reserved.
- * Support: http://www.icl-network.com
- */
 package com.myproject.www.utils;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.List;
 
 import org.springframework.util.Assert;
 
