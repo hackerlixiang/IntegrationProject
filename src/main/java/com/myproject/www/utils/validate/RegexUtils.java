@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * 常用的正则表达式
+ * 
  * @author lixiang
  * @Version 1.0
  * @Time 2017年2月9日 下午5:41:03

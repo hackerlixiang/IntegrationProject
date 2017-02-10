@@ -10,6 +10,12 @@ import com.myproject.www.dao.IDepartmentDao;
 import com.myproject.www.entity.Department;
 import com.myproject.www.service.IDepartmentService;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:41
+ */
 @Service
 @Transactional
 public class DepartmentServiceImpl implements IDepartmentService {

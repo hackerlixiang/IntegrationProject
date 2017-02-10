@@ -13,6 +13,12 @@ import com.myproject.www.pageQuery.query.DataDictionaryQuery;
 import com.myproject.www.service.IDataDictionaryService;
 import com.myproject.www.utils.BeanUtils;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:36
+ */
 @Service("dataDictionaryServiceImpl")
 public class DataDictionaryServiceImpl extends BaseServiceImpl<DataDictionaryEntity, DataDictionaryQuery, Long> implements IDataDictionaryService {
 	

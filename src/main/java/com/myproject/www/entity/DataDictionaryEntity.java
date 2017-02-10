@@ -3,7 +3,6 @@ package com.myproject.www.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * 数据字典Entity
  * 

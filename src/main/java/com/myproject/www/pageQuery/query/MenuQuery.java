@@ -4,6 +4,7 @@ import com.myproject.www.entity.MenuEntity;
 
 /**
  * 菜单查询VO
+ * 
  * @author lixiang
  * @Version 1.0
  * @Time 2017年2月9日 下午5:41:03

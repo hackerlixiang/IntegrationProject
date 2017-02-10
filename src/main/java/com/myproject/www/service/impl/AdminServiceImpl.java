@@ -23,6 +23,12 @@ import com.myproject.www.utils.StringUtils;
 import com.myproject.www.utils.WebUtils;
 import com.myproject.www.utils.encryption.Base64Utils;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:18
+ */
 @Service("adminServiceImpl")
 public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, Long> implements IAdminService {
 	

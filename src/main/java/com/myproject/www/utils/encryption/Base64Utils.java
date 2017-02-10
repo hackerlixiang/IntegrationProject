@@ -12,6 +12,7 @@ import org.apache.shiro.codec.Base64;
   
 /** 
  * BASE64编码解码工具包 
+ * 
  * @author lixiang
  * @Version 1.0
  * @Time 2017年2月9日 下午5:41:03

@@ -33,6 +33,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * 授权认证
+ * 
  * @author lixiang
  * @Version 1.0
  * @Time 2017年2月9日 下午5:41:03

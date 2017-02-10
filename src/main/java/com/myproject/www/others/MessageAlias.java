@@ -1,5 +1,12 @@
 package com.myproject.www.others;
 
+/**
+ * 消息别名
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:26:22
+ */
 public interface MessageAlias {
 	public static final String MESSAGE_UNDEFINED = "MessageUndefined";//未定义消息
 	

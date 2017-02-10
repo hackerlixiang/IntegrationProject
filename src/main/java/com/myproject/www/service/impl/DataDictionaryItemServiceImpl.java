@@ -15,6 +15,12 @@ import com.myproject.www.pageQuery.query.DataDictionaryItemQuery;
 import com.myproject.www.service.IDataDictionaryItemService;
 import com.myproject.www.utils.BeanUtils;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:32
+ */
 @Service("dataDictionaryItemServiceImpl")
 public class DataDictionaryItemServiceImpl extends BaseServiceImpl<DataDictionaryItemEntity, DataDictionaryItemQuery, Long> implements IDataDictionaryItemService {
 	

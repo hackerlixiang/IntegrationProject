@@ -14,6 +14,12 @@ import com.myproject.www.service.IBaseService;
 import com.myproject.www.utils.BeanUtils;
 import com.myproject.www.utils.JsonUtils;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:26
+ */
 public class BaseServiceImpl<T extends BaseEntity,Q extends BaseQuery<T>,ID extends Serializable> implements IBaseService<T, Q, ID>{
 	
 	@Autowired

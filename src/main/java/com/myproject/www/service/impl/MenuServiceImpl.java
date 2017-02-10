@@ -17,6 +17,12 @@ import com.myproject.www.pageQuery.query.MenuQuery;
 import com.myproject.www.service.IMenuService;
 import com.myproject.www.utils.BeanUtils;
 
+/**
+ * 
+ * @author lixiang
+ * @Version 1.0
+ * @Time 2017年2月10日 下午2:27:50
+ */
 @Service("menuServiceImpl")
 public class MenuServiceImpl extends BaseServiceImpl<MenuEntity, MenuQuery, Long> implements IMenuService {
 	
