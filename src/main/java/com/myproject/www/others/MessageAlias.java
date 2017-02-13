@@ -8,9 +8,12 @@ package com.myproject.www.others;
  * @Time 2017年2月10日 下午2:26:22
  */
 public interface MessageAlias {
+	
+	/* -----------------------------------------------------------公共提示消息---------------------------------------------------------------- */
+	public static final String SYSTEM_EXCEPTION = "systemException";//系统异常
 	public static final String MESSAGE_UNDEFINED = "MessageUndefined";//未定义消息
 	
-	/* -----------------------------------------------------------菜单提示消息--------------------------------------------------------------------- */
+	/* -----------------------------------------------------------菜单提示消息---------------------------------------------------------------- */
 	public static final String MENU_PARAM_ERROR = "MenuParamError";//参数错误
 	public static final String MENU_NAME_REPEAT = "MenuNameRepeat";//菜单名称重复
 	public static final String MENU_PATH_REPEAT = "MenuPathRepeat";//菜单路劲重复
@@ -23,7 +26,7 @@ public interface MessageAlias {
 	public static final String MENU_DELETE_FAILURE = "MenuDeleteFailure";//菜单删除失败
 	public static final String MENU_UPDATE_FAILURE = "MenuUpdateFailure";//菜单修改失败
 	
-	/* -----------------------------------------------------------管理员提示消息--------------------------------------------------------------------- */
+	/* -----------------------------------------------------------管理员提示消息--------------------------------------------------------------- */
 	public static final String ADMIN_PARAM_ERROR = "AdminParamError";//参数错误
 	public static final String ADMIN_NOT_FOUND = "AdminNotFound";//管理员不存在
 	

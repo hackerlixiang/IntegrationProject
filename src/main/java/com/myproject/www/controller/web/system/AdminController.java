@@ -140,7 +140,7 @@ public class AdminController extends BaseSystemController{
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	@ResponseBody
 	public Message update(AdminBean adminBean,HttpServletRequest request) throws Exception{
-		
+		int i = 1/0;
 		if(!adminService.adminIsExist(adminBean.getId())){
 			return Message.getFailureMessage(MessageAlias.ADMIN_NOT_FOUND);
 		}

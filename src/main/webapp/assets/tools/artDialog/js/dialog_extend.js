@@ -1,4 +1,4 @@
-function messageDialog(type,cont){
+function messageDialog(type,message){
 	var msgType = "text-success";
 	switch (type) {
 		case "warning":{msgType = "text-warning";break;}
@@ -6,7 +6,7 @@ function messageDialog(type,cont){
 		case "failure":{msgType = "text-danger";break;}
 		default:{msgType = "text-success";break;}
 	}
-	var content = "<p class='"+msgType+"' style='width:100%;text-align:center'>"+cont+"</p>"
+	var content = "<p class='"+msgType+"' style='width:100%;text-align:center'>"+message+"</p>"
 	dialog({
 	    title: '提示',
 	    align: 'left',

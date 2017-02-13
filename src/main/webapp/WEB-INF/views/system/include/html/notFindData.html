@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>找不到资源</title>
+		<style type="text/css">
+			body {
+				overflow: hidden;
+			}
+			div {
+				position: absolute;
+				height: 300px;
+				width: 100%;
+				top: 50%;
+				margin-top: -150px;
+				text-align: center;
+			}
+			a {
+				display: inline-block;width: 150px;height: 40px;background: #11B6F4;color: #fff;font-size: 18px;line-height: 40px;font-weight: bold;text-decoration: none;border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body background="${baseUrl}/assets/images/not_found/bg.jpg">
+		<div>
+			<img src="${baseUrl}/assets/images/not_found/01.png"/>
+			<h1>${message!}</h1>
+			<a href="/sxzz/index">返回主页</a>
+		</div>
+	</body>
+</html>
