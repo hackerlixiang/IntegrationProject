@@ -108,7 +108,7 @@ public class AdminController extends BaseSystemController{
 	}
 	
 	/**
-	 * 跳转至管理员添加页面
+	 * 跳转至管理员修改页面
 	 * @param request
 	 * @param id 管理员ID
 	 * @return 视图模型对象
@@ -116,15 +116,13 @@ public class AdminController extends BaseSystemController{
 	@RequestMapping(value="/update/{id}",method = RequestMethod.GET)
 	public ModelAndView update(HttpServletRequest request,@PathVariable Long id) throws Exception{
 		
-		if(id == null){
-			return new ModelAndView(NOT_FOUND_DATA).addObject("data", "管理员");
-		}
-		AdminEntity pAdmin = adminService.findById(id);
-		if(pAdmin == null){
-			return new ModelAndView(NOT_FOUND_DATA).addObject("data", "管理员");
+		if(!adminService.adminIsExist(id)){
+			return new ModelAndView(NOT_FOUND_DATA).addObject("message", "管理员不存在!");
 		}
 		
 		ModelAndView modelAndView = getModelAndView(request);
+		
+		AdminEntity pAdmin = adminService.findById(id);
 		modelAndView.addObject("admin", pAdmin);
 		
 		// 获取性别字典项
@@ -132,6 +130,32 @@ public class AdminController extends BaseSystemController{
 		modelAndView.addObject("dataDictionaryItems", dataDictionaryItems);
 		
 		return modelAndView;
+	}
+	
+	/**
+	 * 修改管理员
+	 * @param menuBean 管理员Bean
+	 * @return 添加结果消息
+	 */
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Message update(AdminBean adminBean,HttpServletRequest request) throws Exception{
+		
+		if(!adminService.adminIsExist(adminBean.getId())){
+			return Message.getFailureMessage(MessageAlias.ADMIN_NOT_FOUND);
+		}
+		
+		//处理表单参数
+		adminService.perBeforeHandleAdmin(adminBean, request);
+		
+		//管理员Bean验证
+		if(!valid(adminBean)){
+			return Message.getWarningMessage(MessageAlias.ADMIN_PARAM_ERROR);
+		}
+		
+		//添加管理员
+		return adminService.modify(adminBean);
+		
 	}
 	
 	/**

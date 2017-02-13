@@ -18,7 +18,9 @@ function messageDialog(type,cont){
 	    ok: function () {
 	    	if(type=="success"){
 	    		//执行重置按钮事件
-	    		$("button[type='reset']").trigger("click"); 
+	    		//$("button[type='reset']").trigger("click"); 
+	    		//重新加载当前页面
+	    		document.location.reload();
 	    	}
 	        return true;
 	    }

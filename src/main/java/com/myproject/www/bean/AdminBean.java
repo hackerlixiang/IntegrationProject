@@ -13,6 +13,9 @@ import com.myproject.www.utils.validate.annon.Validate;
  * @Time 2017年2月9日 下午5:41:03
  */
 public class AdminBean extends BaseBean {
+	
+	/** 管理员ID */
+	private Long id;
 
 	/** 用户名 */
 	@Validate(minLength=6,maxLength=15)
@@ -55,11 +58,16 @@ public class AdminBean extends BaseBean {
 	@Validate(regexType = RegexType.IP)
 	private String registIp;
 
-	/** 登录IP */
-	private String loginIp;
-
 	/** 头像 */
 	private String headPortrait;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -147,14 +155,6 @@ public class AdminBean extends BaseBean {
 
 	public void setRegistIp(String registIp) {
 		this.registIp = registIp;
-	}
-
-	public String getLoginIp() {
-		return loginIp;
-	}
-
-	public void setLoginIp(String loginIp) {
-		this.loginIp = loginIp;
 	}
 
 	public String getHeadPortrait() {

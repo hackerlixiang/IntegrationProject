@@ -24,15 +24,13 @@ public class MyInterceptor implements HandlerInterceptor{
 	
 	//preHandle方法的返回值为true 时才能被调用
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response,
-			Object object, ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response,Object object, ModelAndView modelAndView) throws Exception {
 		
 	}
 	
 	//该方法将在请求处理之前进行调用
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-			Object object) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object object) throws Exception {
 //		HandlerMethod handlerMethod = (HandlerMethod)object;//获取发送请求的对象
 //		String className = handlerMethod.getBeanType().getName();//获得请求对象的类型名
 //		String methodName = handlerMethod.getMethod().getName();//获得请求对象的方法名

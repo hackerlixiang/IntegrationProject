@@ -64,8 +64,10 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 		
 		////解码base64码
 		String password = adminBean.getPassword();
-		password = new String(Base64Utils.decode(password));
-		adminBean.setPassword(password);
+		if(StringUtils.isNotBlank(password)){
+			password = new String(Base64Utils.decode(password));
+			adminBean.setPassword(password);
+		}
 		
 		return adminBean;
 	}
@@ -92,8 +94,35 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 		}
 		
 	}
+	
+	@Override
+	@Transactional
+	public Message modify(AdminBean adminBean) throws Exception {
+		AdminEntity admin = findById(adminBean.getId());//创建Admin对象
+		
+		// 设置修改属性
+		admin.setId(adminBean.getId());
+		admin.setName(adminBean.getName());
+		admin.setNickName(adminBean.getNickName());
+		admin.setIdCard(adminBean.getIdCard());
+		admin.setEmail(adminBean.getEmail());
+		admin.setMobile(adminBean.getMobile());
+		admin.setBirthday(adminBean.getBirthday());
+		admin.setSex(adminBean.getSex());
+		
+		//调用持久化方法
+		Long affectedConut = adminDao.update(admin);
+		
+		//持久化后消息处理
+		if(affectedConut==1L){
+			return Message.getSuccessMessage(MessageAlias.ADMIN_UPDATE_SUCCESS);
+		}else{
+			return Message.getFailureMessage(MessageAlias.ADMIN_UPDATE_FAILURE);
+		}
+	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Boolean validateRepeatUsername(String username, Long id) throws Exception {
 		AdminEntity pAdmin = adminDao.findAdminByUsername(username);
 		if(pAdmin==null){
@@ -108,6 +137,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Boolean validateRepeatIdCard(String idCard, Long id) throws Exception {
 		AdminEntity pAdmin = adminDao.findAdminByIdCard(idCard);
 		if(pAdmin==null){
@@ -122,6 +152,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Boolean validateRepeatEmail(String email, Long id) throws Exception {
 		AdminEntity pAdmin = adminDao.findAdminByEmail(email);
 		if(pAdmin==null){
@@ -136,6 +167,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Boolean validateRepeatMobile(String mobile, Long id) throws Exception {
 		AdminEntity pAdmin = adminDao.findAdminByMobile(mobile);
 		if(pAdmin==null){
@@ -148,7 +180,18 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 			return false;
 		}
 	}
-	
-	
-	
+
+	@Override
+	@Transactional(readOnly=true)
+	public Boolean adminIsExist(Long id) throws Exception {
+		if(id == null){//ID 为空
+			return false;
+		}
+		AdminEntity pAdmin = findById(id);
+		if(pAdmin == null){// 管理员不存在
+			return false;
+		}
+		return true;
+	}
+
 }

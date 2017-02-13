@@ -139,7 +139,7 @@ public class MenuController extends BaseSystemController{
 	public Message update(MenuBean menuBean) throws Exception{
 		//菜单Bean验证
 		if(!valid(menuBean)||menuBean.getId()==null){
-			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.MENU_PARAM_ERROR);
+			return Message.getMessage(MessageTypeEnum.warning,MessageAlias.ADMIN_NOT_FOUND);
 		}
 		//验证菜单名是否重复
 		if(!menuService.validateRepeatName(menuBean.getName(),menuBean.getId())){

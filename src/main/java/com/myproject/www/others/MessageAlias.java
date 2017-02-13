@@ -25,6 +25,7 @@ public interface MessageAlias {
 	
 	/* -----------------------------------------------------------管理员提示消息--------------------------------------------------------------------- */
 	public static final String ADMIN_PARAM_ERROR = "AdminParamError";//参数错误
+	public static final String ADMIN_NOT_FOUND = "AdminNotFound";//管理员不存在
 	
 	public static final String ADMIN_ADD_SUCCESS = "AdminAddSuccess";//管理员添加成功
 	public static final String ADMIN_DELETE_SUCCESS = "AdminDeleteSuccess";//管理员删除成功
