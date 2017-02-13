@@ -23,6 +23,7 @@
 	                <th>年龄</th>
 	                <th>性别</th>
 	                <th>手机号</th>
+	                <th>操作</th>
 	            </tr>
 	        </thead>
 	        <tfoot>
@@ -35,6 +36,7 @@
 	                <th>年龄</th>
 	                <th>性别</th>
 	                <th>手机号</th>
+	                <th>操作</th>
 	            </tr>
 	        </tfoot>
 	    </table>
@@ -46,9 +48,9 @@
     [#include "/system/template/dataTable.button.temp"/]
     [#include "/system/template/selectEqOrLike.temp"/]
 	
-	[#--引入JS--]
-	<script type="text/javascript" src="/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+	[#-- ************************************************************* 引入JS ************************************************************* --]
+	[#-- 公共JS --]
+	[#include "/system/include/js/public_js.html"/]
 	[#--list--]
 	[#include "/system/include/js/list_js.html"/]
 	
@@ -64,10 +66,20 @@
 					{"data": "nickName", "sType": "string","orderable": false},
 					{"data": "age", "sType": "string","orderable": false},
 					{"data": "sex", "sType": "string","orderable": false},
-					{"data": "mobile", "sType": "string","orderable": false}
+					{"data": "mobile", "sType": "string","orderable": false},
+					{"data": "id","bSearchable": false,"bSortable": false,"width":"180px",
+						"render": function(id) {
+							var render = "<a href='/system/admin/view/"+id+"' class='btn btn-primary btn-sm active' role='button'>查看</a>";
+							render += "&emsp;";
+							render += "<a href='/system/admin/update/"+id+"' class='btn btn-primary btn-sm active' role='button'>修改</a>";
+							render += "&emsp;";
+							render += "<a href='javascript:;' onclick='' class='btn btn-danger btn-sm active' role='button'>删除</a>";
+							return render;
+						}
+					}
 		        ],
 		        "ajax": {
-		            "url": "/system/admin/getData",
+		            "url": "${baseUrl}/system/admin/getData",
 		            "type": "POST",
 		            "dataSrc": "data",
 		            "data": function(d){

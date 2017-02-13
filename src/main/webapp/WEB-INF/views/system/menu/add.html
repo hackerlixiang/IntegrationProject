@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="container-fluid" style="height: 100%">
-		<form id="inputForm" action="/system/menu/add" method="post" class="form-horizontal col-sm-offset-2">
+		<form id="inputForm" action="${baseUrl}/system/menu/add" method="post" class="form-horizontal col-sm-offset-2">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">
 					<span class="text-danger">*</span>
@@ -82,9 +82,9 @@
 	
 	[#include "/system/menu/icons.html"/]
      
-	[#--引入JS--]
-	<script type="text/javascript" src="/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+	[#-- ************************************************************* 引入JS ************************************************************* --]
+	[#-- 公共JS --]
+	[#include "/system/include/js/public_js.html"/]
 	[#--input_js--]
 	[#include "/system/include/js/input_js.html"/]
 	
@@ -107,7 +107,7 @@
 						minlength: 2,
 						maxlength: 8,
 						remote: {
-							url: "/system/menu/validate_repeat_name",
+							url: "${baseUrl}/system/menu/validate_repeat_name",
 							type: "post"
 						}
 					},
@@ -115,7 +115,7 @@
 						required: true,
 						matching:/\/\w\S/,
 						remote: {
-							url: "/system/menu/validate_repeat_path",
+							url: "${baseUrl}/system/menu/validate_repeat_path",
 							type: "post"
 						}
 					},

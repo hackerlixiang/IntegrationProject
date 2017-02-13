@@ -27,7 +27,7 @@
 	        </thead>
 	        <tfoot>
 	            <tr>
-	                <th>ID${o!"-"}</th>
+	                <th>ID</th>
 	                <th>菜单名</th>
 	                <th>父菜单名</th>
 	                <th>菜单图标</th>
@@ -46,12 +46,12 @@
     [#include "/system/template/dataTable.button.temp"/]
     [#include "/system/template/selectEqOrLike.temp"/]
 	
-	[#--引入JS--]
-	<script type="text/javascript" src="/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+	[#-- ************************************************************* 引入JS ************************************************************* --]
+	[#-- 公共JS --]
+	[#include "/system/include/js/public_js.html"/]
 	[#-- artDialog --]
-	<script type="text/javascript" src="/assets/tools/artDialog/js/dialog-min.js"></script>
-	<script type="text/javascript" src="/assets/tools/artDialog/js/dialog_extend.js"></script>
+	<script type="text/javascript" src="${baseUrl}/assets/tools/artDialog/js/dialog-min.js"></script>
+	<script type="text/javascript" src="${baseUrl}/assets/tools/artDialog/js/dialog_extend.js"></script>
 	[#--list--]
 	[#include "/system/include/js/list_js.html"/]
 	

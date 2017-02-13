@@ -30,7 +30,7 @@ public class DataDictionaryItemServiceImpl extends BaseServiceImpl<DataDictionar
 	@Override
 	public Message save(DataDictionaryItemBean dataDictionaryItemBean) throws Exception {
 		DataDictionaryItemEntity dataDictionaryItem = new DataDictionaryItemEntity();
-		BeanUtils.copyProperties(dataDictionaryItemBean, dataDictionaryItem);
+		BeanUtils.copyPropertiesIgnoreNull(dataDictionaryItemBean, dataDictionaryItem);
 		Long affectedConut = dataDictionaryItemDao.add(dataDictionaryItem);
 		if(affectedConut==1L){
 			return Message.getMessage(MessageTypeEnum.success,MessageAlias.DATA_DICTIONARY_ADD_SUCCESS);

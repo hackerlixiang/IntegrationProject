@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -106,6 +107,32 @@ public class AdminController extends BaseSystemController{
 		
 	}
 	
+	/**
+	 * 跳转至管理员添加页面
+	 * @param request
+	 * @param id 管理员ID
+	 * @return 视图模型对象
+	 */
+	@RequestMapping(value="/update/{id}",method = RequestMethod.GET)
+	public ModelAndView update(HttpServletRequest request,@PathVariable Long id) throws Exception{
+		
+		if(id == null){
+			return new ModelAndView(NOT_FOUND_DATA).addObject("data", "管理员");
+		}
+		AdminEntity pAdmin = adminService.findById(id);
+		if(pAdmin == null){
+			return new ModelAndView(NOT_FOUND_DATA).addObject("data", "管理员");
+		}
+		
+		ModelAndView modelAndView = getModelAndView(request);
+		modelAndView.addObject("admin", pAdmin);
+		
+		// 获取性别字典项
+		List<DataDictionaryItemEntity> dataDictionaryItems = dataDictionaryItemService.findItemByDataDictionaryCode("SEX");
+		modelAndView.addObject("dataDictionaryItems", dataDictionaryItems);
+		
+		return modelAndView;
+	}
 	
 	/**
 	 * 验证管理员名是否重复

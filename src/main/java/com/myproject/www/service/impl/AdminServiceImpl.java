@@ -75,7 +75,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	public Message save(AdminBean adminBean) throws Exception {
 		
 		AdminEntity admin = new AdminEntity();//创建Admin对象
-		BeanUtils.copyProperties(adminBean, admin);//把AdminBean对象的属性copy到Admin对象中
+		BeanUtils.copyPropertiesIgnoreNull(adminBean, admin);//把AdminBean对象的属性copy到Admin对象中
 		
 		// 处理用户密码
 		String password = adminBean.getPassword();

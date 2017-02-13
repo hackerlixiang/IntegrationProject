@@ -7,10 +7,12 @@ import java.util.Map.Entry;
 
 
 
+
 //import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 //import javax.validation.ConstraintViolation;
 //import javax.validation.Validator;
+
 
 
 
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 
 
@@ -37,7 +40,11 @@ import com.myproject.www.utils.validate.ValidateUtils;
  */
 public class BaseSystemController {
 
-	public static final String redirectUrl = "redirect:/system/index/index";
+	//首页
+	public static final String REDIRECT_URL = "redirect:/system/index/index";
+	
+	//找不到数据
+	public static String NOT_FOUND_DATA = "/system/include/html/notFindData";
 
 	@Autowired
 	private RequestMappingHandlerMapping requestMappingHandlerMapping;
@@ -68,7 +75,7 @@ public class BaseSystemController {
 	 * @return 视图模型对象
 	 */
 	public String index() throws Exception{
-		return redirectUrl;
+		return REDIRECT_URL;
 	}
 
 	/**

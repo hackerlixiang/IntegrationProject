@@ -67,7 +67,7 @@ public class BaseServiceImpl<T extends BaseEntity,Q extends BaseQuery<T>,ID exte
 			Q queryFilters = (Q)JsonUtils.toObject(q.getFilter(), q.getClass());
 			//将拥有查询参数的查询对象复制进查询对象中
 			if(queryFilters!=null){
-				BeanUtils.copyProperties(queryFilters, q, q.getIgnoreProperties());
+				BeanUtils.copyPropertiesIgnoreNull(queryFilters, q, q.getIgnoreProperties());
 			}
 		}
 		//创建分页信息对象

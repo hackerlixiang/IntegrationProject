@@ -26,7 +26,7 @@
 		<property name="freemarkerVariables">
 			<map>
 				<!-- 基本变量 -->
-				<entry key="baseUrl" value="${baseSetting.baseUrl}" />
+				<entry key="baseUrl" value="${baseUrl}" />
 				
 				<!-- 自定义宏（指令、方法） -->
 				<entry key="abbreviate" value-ref="abbreviateMethod" />

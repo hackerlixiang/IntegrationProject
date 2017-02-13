@@ -36,7 +36,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuEntity, MenuQuery, Long
 	@Transactional
 	public Message save(MenuBean menuBean) throws Exception {
 		MenuEntity menu = new MenuEntity();
-		BeanUtils.copyProperties(menuBean, menu);
+		BeanUtils.copyPropertiesIgnoreNull(menuBean, menu);
 		Long affectedConut = menuDao.add(menu);
 		if(affectedConut==1L){
 			return Message.getMessage(MessageTypeEnum.success,MessageAlias.MENU_ADD_SUCCESS);

@@ -6,6 +6,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.util.Assert;
@@ -22,24 +23,24 @@ import org.springframework.util.ClassUtils;
 public abstract class BeanUtils extends org.springframework.beans.BeanUtils{
 
 	/**
-	 * 从org.springframework.beans.BeanUtils类中直接复制过来
+	 * 忽略copy null属性
 	 * @param source
 	 * @param target
 	 * @throws BeansException
 	 */
-	public static void copyProperties(Object source, Object target) throws BeansException {
-		copyProperties(source, target, null, (String[]) null);
+	public static void copyPropertiesIgnoreNull(Object source, Object target) throws BeansException {
+		copyNotNullProperties(source, target, null, (String[]) null);
 	}
 	
 	/**
-	 * 从org.springframework.beans.BeanUtils类中直接复制过来
+	 * 忽略copy null属性
 	 * @param source
 	 * @param target
 	 * @param ignoreProperties
 	 * @throws BeansException
 	 */
-	public static void copyProperties(Object source, Object target,String... ignoreProperties) throws BeansException {
-		copyProperties(source, target, null, ignoreProperties);
+	public static void copyPropertiesIgnoreNull(Object source, Object target,String... ignoreProperties) throws BeansException {
+		copyNotNullProperties(source, target, null, ignoreProperties);
 	}
 	
 	/**
@@ -50,7 +51,7 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils{
 	 * @param ignoreProperties
 	 * @throws BeansException
 	 */
-	private static void copyProperties(Object source, Object target, Class<?> editable, String... ignoreProperties)
+	private static void copyNotNullProperties(Object source, Object target, Class<?> editable, String... ignoreProperties)
 			throws BeansException {
 
 		Assert.notNull(source, "Source must not be null");
@@ -59,8 +60,7 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils{
 		Class<?> actualEditable = target.getClass();
 		if (editable != null) {
 			if (!editable.isInstance(target)) {
-				throw new IllegalArgumentException("Target class [" + target.getClass().getName() +
-						"] not assignable to Editable class [" + editable.getName() + "]");
+				throw new IllegalArgumentException("Target class [" + target.getClass().getName() +"] not assignable to Editable class [" + editable.getName() + "]");
 			}
 			actualEditable = editable;
 		}
@@ -89,8 +89,7 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils{
 							}
 						}
 						catch (Throwable ex) {
-							throw new FatalBeanException(
-									"Could not copy property '" + targetPd.getName() + "' from source to target", ex);
+							throw new FatalBeanException("Could not copy property '" + targetPd.getName() + "' from source to target", ex);
 						}
 					}
 				}

@@ -42,6 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(now(),now(),#{username},#{password},#{name},#{nickName},#{birthday},#{age},#{sex},#{idCard},#{email},#{mobile},#{registIp},#{loginIp},#{headPortrait})
 	</insert>
 	
+	<!-- 通过ID获得管理员 -->
+	<select id="findById" parameterType="Long" resultMap="adminMap" >
+		<include refid="sql_result"/> <where> u.id = #{id}</where>
+	</select>
+	
 	<!-- 根据用户名获取用户 -->
 	<select id="findAdminByUsername" parameterType="String" resultMap="adminMap">
 		<include refid="sql_result"/> <where> u.username = #{username}</where>
