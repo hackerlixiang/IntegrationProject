@@ -32,9 +32,9 @@
 				<span class="title">菜单管理</span>
 			</a>
 			<ul class="sub-menu">
-				<li><a href="/system/menu/add" target="mainFrame">添加菜单</a></li>
-				<li><a href="/system/menu/list" target="mainFrame">菜单列表</a></li>
-				<li><a href="/test" target="mainFrame">菜单列表测试</a></li>
+				<li><a href="${baseUrl}/system/menu/add" target="mainFrame">添加菜单</a></li>
+				<li><a href="${baseUrl}/system/menu/list" target="mainFrame">菜单列表</a></li>
+				<li><a href="${baseUrl}/test" target="mainFrame">菜单列表测试</a></li>
 			</ul>
 		</li>
 		
@@ -46,8 +46,8 @@
 				<span class="arrow open"></span>
 			</a>
 			<ul class="sub-menu">
-				<li><a href="/system/admin/add" target="mainFrame">添加用户</a></li>
-				<li class="active"><a href="/system/admin/list" target="mainFrame">用户列表</a></li>
+				<li><a href="${baseUrl}/system/admin/add" target="mainFrame">添加用户</a></li>
+				<li class="active"><a href="${baseUrl}/system/admin/list" target="mainFrame">用户列表</a></li>
 			</ul>
 		</li>
 		
@@ -60,7 +60,7 @@
 			[#if menu.childrens?size>0]
 			<ul class="sub-menu">
 				[#list menu.childrens as chilren]
-				<li><a href="/system/menu/add" target="mainFrame">${chilren.name}</a></li>
+				<li><a href="${baseUrl}/system/menu/add" target="mainFrame">${chilren.name}</a></li>
 				[/#list]
 			</ul>
 			[/#if]

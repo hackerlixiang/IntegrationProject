@@ -69,9 +69,9 @@
 					{"data": "mobile", "sType": "string","orderable": false},
 					{"data": "id","bSearchable": false,"bSortable": false,"width":"180px",
 						"render": function(id) {
-							var render = "<a href='/system/admin/view/"+id+"' class='btn btn-primary btn-sm active' role='button'>查看</a>";
+							var render = "<a href='${baseUrl}/system/admin/view/"+id+"' class='btn btn-primary btn-sm active' role='button'>查看</a>";
 							render += "&emsp;";
-							render += "<a href='/system/admin/update/"+id+"' class='btn btn-primary btn-sm active' role='button'>修改</a>";
+							render += "<a href='${baseUrl}/system/admin/update/"+id+"' class='btn btn-primary btn-sm active' role='button'>修改</a>";
 							render += "&emsp;";
 							render += "<a href='javascript:;' onclick='' class='btn btn-danger btn-sm active' role='button'>删除</a>";
 							return render;

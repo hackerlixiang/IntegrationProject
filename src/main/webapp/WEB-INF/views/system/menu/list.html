@@ -59,7 +59,7 @@
 		[#-- 删除菜单 --]
 		function deleteMenu(id){
 			$.ajax({
-				url:"/system/menu/delete/"+id,
+				url:"${baseUrl}/system/menu/delete/"+id,
 				success: function(data){
 					queryButton.click();
 					messageDialog(data.type,data.content);
@@ -95,9 +95,9 @@
 					{"data": "sort", "sType": "string"},
 					{"data": "id","bSearchable": false,"bSortable": false,"width":"180px",
 						"render": function(id) {
-							var render = "<a href='/system/menu/view/"+id+"' class='btn btn-primary btn-sm active' role='button'>查看</a>";
+							var render = "<a href='${baseUrl}/system/menu/view/"+id+"' class='btn btn-primary btn-sm active' role='button'>查看</a>";
 							render += "&emsp;";
-							render += "<a href='/system/menu/update/"+id+"' class='btn btn-primary btn-sm active' role='button'>修改</a>";
+							render += "<a href='${baseUrl}/system/menu/update/"+id+"' class='btn btn-primary btn-sm active' role='button'>修改</a>";
 							render += "&emsp;";
 							render += "<a href='javascript:;' onclick='deleteMenu("+id+");' class='btn btn-danger btn-sm active' role='button'>删除</a>";
 							return render;
@@ -105,7 +105,7 @@
 					}
 		        ],
 		        "ajax": {
-		            "url": "/system/menu/getData",
+		            "url": "${baseUrl}/system/menu/getData",
 		            "type": "POST",
 		            "dataSrc": "data",
 		            "data": function(d){
