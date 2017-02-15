@@ -10,9 +10,16 @@
 <!-- 添加图标弹窗滚动条样式和取消图标li标签·  -->
 <style type="text/css">
 	.tabbable {
-		overflow: scroll;
-		height: 440px;
+		overflow: auto;
+		height: auto;
+		max-height:440px;
 		width: 1100px;
+		padding-left: 0px !important;
+    	padding-right: 0px !important;
+	}
+	.tabbable .col-sm-2,.tabbable .col-sm-12 {
+		padding-left: 0px !important;
+    	padding-right: 0px !important;
 	}
 	.tabbable .input-icons li{
 		list-style-type:none;
@@ -171,7 +178,6 @@
 	           	 	fixed: true,
 	           	 	padding: 0,
 	           	 	width:1100,
-	           	 	height:440,
 	           	 	top:10,
 		           	onclose: function () {//菜单弹窗关闭时执行方法
 		 				if (this.returnValue) {
@@ -179,9 +185,9 @@
 		 					clearCustomIcon();
 		 					//为icon赋值
 		 					$('#icon').val(this.returnValue);
-		 					//在icon框后加上菜单图标
 		 					//为自定义icon位调整位置
 		 					$('#icon').next().css({ "right":"27px","top":"10px"});
+		 					//在icon框后加上菜单图标
 		 					$('#icon').next().addClass(this.returnValue);
 		 				}
 		 			}

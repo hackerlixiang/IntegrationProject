@@ -15,7 +15,9 @@ function initInputForm(){
 	$(".select2-selection").find(".select2-selection__rendered").css({"height":"33px","line-height":"32px"});
 	$(".select2-selection").find(".select2-selection__arrow").css({"height":"33px"});
 	//添加加密功能
-	Base64.extendString();
+	if(window.Base64){
+		Base64.extendString();
+	}
 }
 //执行表单初始化方法
 initInputForm();

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myproject.www.cache.CacheHandler;
 import com.myproject.www.entity.MenuEntity;
 import com.myproject.www.service.IMenuService;
-import com.myproject.www.utils.DictionaryUtils;
 
 /**
  * 主页Controller
@@ -39,6 +38,7 @@ public class IndexController extends BaseSystemController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) throws Exception{
+		
 		ModelAndView modelAndView = getModelAndView(request);
 		//获取菜单列表
 		List<MenuEntity> menus = new ArrayList<>();

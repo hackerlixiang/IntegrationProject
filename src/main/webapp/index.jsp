@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>	
-	<%response.sendRedirect("/system/index/index"); %>
+	<%
+		String baseUrl = request.getLocalAddr()+request.getContextPath();
+		response.sendRedirect("http://"+baseUrl+"/system/index/index");
+	%>
 </body>
 </html>
