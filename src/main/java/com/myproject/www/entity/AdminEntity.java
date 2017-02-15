@@ -1,6 +1,13 @@
 package com.myproject.www.entity;
 
 import java.util.Date;
+import java.util.List;
+
+import net.sf.ehcache.Element;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.myproject.www.utils.DictionaryUtils;
+import com.myproject.www.utils.StringUtils;
 
 /**
  * 管理员Entity
@@ -157,6 +164,46 @@ public class AdminEntity extends BaseEntity {
 		this.headPortrait = headPortrait;
 	}
 
+	//================================================JSON====================================================
+	@JsonProperty("name")
+	public String getNameToJson() {
+		return StringUtils.getStringByObject(getName());
+	}
+
+	@JsonProperty("username")
+	public String getUsernameToJson() {
+		return StringUtils.getStringByObject(getUsername());
+	}
+
+	@JsonProperty("nickName")
+	public String getNickNameToJson() {
+		return StringUtils.getStringByObject(getNickName());
+	}
+
+	@JsonProperty("age")
+	public String getAgeToJson() {
+		return StringUtils.getStringByObject(getAge());
+	}
+
+	@JsonProperty("sex")
+	public String getSexToJson() {
+		return DictionaryUtils.getNameByCode(getSex());
+	}
+	
+	@JsonProperty("mobile")
+	public String getMobileToJson() {
+		return StringUtils.getStringByObject(getMobile());
+	}
+	
+	@Override
+	public String toString() {
+		String superToString = super.toString();
+		String thisToString = "AdminEntity [username=" + username + ", password=" + password + ", name=" + name + ", nickName=" + nickName + ", birthday="
+				+ birthday + ", age=" + age + ", sex=" + sex + ", idCard=" + idCard + ", email=" + email + ", mobile=" + mobile
+				+ ", registIp=" + registIp + ", loginIp=" + loginIp + ", headPortrait=" + headPortrait + "]";
+		return superToString+"|"+thisToString;
+	}
+	
 	
 
 }

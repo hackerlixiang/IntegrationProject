@@ -8,6 +8,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.myproject.www.cache.CacheHandler;
+import com.myproject.www.service.IDataDictionaryItemService;
 import com.myproject.www.service.IMenuService;
 
 import net.sf.ehcache.Element;
@@ -28,8 +29,21 @@ public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 	@Resource(name="menuServiceImpl")
 	private IMenuService menuServiceImpl;
 	
+	@Resource(name="dataDictionaryItemServiceImpl")
+	private IDataDictionaryItemService dataDictionaryItemServiceImpl;
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+		// 将菜单加入缓存
+		menusAddCache();
+		//将数据字典-性别 加入缓存
+		sexAddCache();
+//		System.out.println(cacheHandler.getDiskStorePath());
+//		System.out.println(cacheHandler.getCacheSize());
+	}
+	
+	// 将菜单加入缓存
+	private void menusAddCache(){
 		Element element = cacheHandler.getElement("initParams", "menus");
 		if(element==null){
 			try {
@@ -38,8 +52,15 @@ public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 				e.printStackTrace();
 			}
 		}
-//		System.out.println(cacheHandler.getDiskStorePath());
-//		System.out.println(cacheHandler.getCacheSize());
+	}
+	
+	//将数据字典-性别 加入缓存
+	private void sexAddCache(){
+		try {
+			dataDictionaryItemServiceImpl.itemNamesAddCacheByDictionaryCode("SEX");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

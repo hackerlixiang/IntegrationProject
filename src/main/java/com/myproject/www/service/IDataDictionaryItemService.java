@@ -25,8 +25,27 @@ public interface IDataDictionaryItemService extends IBaseService<DataDictionaryI
 
 	/**
 	 * 根据字典code获取字典项
-	 * @param dictionaryCode 字典CODE
+	 * @param code 字典code
 	 * @return 字典项集合
 	 */
-	public List<DataDictionaryItemEntity> findItemByDataDictionaryCode(String dictionaryCode) throws Exception;
+	public List<DataDictionaryItemEntity> findItemByDataDictionaryCode(String dataDictionaryCode) throws Exception;
+	
+	/**
+	 * 根据code 获取名称
+	 * @param code 字典项code
+	 * @return 字典项名称
+	 * @throws Exception
+	 */
+	public String getNameByCode(String code) throws Exception;
+	
+	/**
+	 * 将数据字典项名称加入缓存
+	 */
+	public void itemNamesAddCache() throws Exception;
+	
+	/**
+	 * 根据数据字典code将数据字典项名称加入缓存
+	 * @param code 数据字典dictionaryCode
+	 */
+	public void itemNamesAddCacheByDictionaryCode(String dictionaryCode) throws Exception;
 }

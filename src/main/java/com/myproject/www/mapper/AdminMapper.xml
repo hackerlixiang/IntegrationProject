@@ -94,6 +94,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 获取过滤后的菜单数量 -->
 	<select id="getFilteredCount" parameterType="adminQuery" resultType="Long">
 		<include refid="sql_count"/>
+		<where>
+			<foreach collection="querys" index="key" item="map" separator=" and ">
+				u.${key} 
+				<foreach collection="map" index="filCond" item="value">
+					<if test="filCond=='eq'"> = #{value} </if>
+					<if test="filCond=='like'"> LIKE CONCAT('%',#{value},'%') </if> 
+				</foreach>
+			</foreach>
+		</where>
 	</select>
 	
 	<!-- 获取菜单总数量 -->

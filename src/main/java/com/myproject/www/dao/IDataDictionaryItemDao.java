@@ -20,5 +20,13 @@ public interface IDataDictionaryItemDao extends IBaseDao<DataDictionaryItemEntit
 	 * @return 字典项集合
 	 */
 	public List<DataDictionaryItemEntity> findItemByDataDictionaryCode(String dictionaryCode);
+
+	/**
+	 * 根据code 获取名称
+	 * @param code 字典项CODE
+	 * @return 字典项名称
+	 * @throws Exception
+	 */
+	public String getNameByCode(String code);
 	
 }

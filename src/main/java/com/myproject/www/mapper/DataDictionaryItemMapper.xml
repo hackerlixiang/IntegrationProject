@@ -34,5 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findItemByDataDictionaryCode" parameterType="String" resultMap="itemMap">
 		 SELECT item.* FROM t_data_dictionary_item item <where> item.data_dictionary_code = #{dictionaryCode}</where>
 	</select>
-
+	
+	
+	<!-- 根据字典项code获取字典项 -->
+	<select id="getNameByCode" parameterType="String" resultType="String">
+		 SELECT item.name FROM t_data_dictionary_item item <where> item.code = #{code}</where>
+	</select>
 </mapper>

@@ -18,6 +18,7 @@
 	                <th>ID</th>
 	                <th>创建时间</th>
 	                <th>修改时间</th>
+	                <th>姓名</th>
 	                <th>用户名</th>
 	                <th>昵称</th>
 	                <th>年龄</th>
@@ -31,6 +32,7 @@
 	                <th>ID</th>
 	                <th>创建时间</th>
 	                <th>修改时间</th>
+	                <th>姓名</th>
 	                <th>用户名</th>
 	                <th>昵称</th>
 	                <th>年龄</th>
@@ -42,7 +44,7 @@
 	    </table>
     </div>
     [#--引入查询表单--]
-    [#include "/system/menu/query.html"/]
+    [#include "/system/admin/query.html"/]
     
     [#--引入模板--]
     [#include "/system/template/dataTable.button.temp"/]
@@ -62,6 +64,7 @@
 					{"data": "id", "sType": "string"},
 					{"data": "createDate", "sType": "string"},
 					{"data": "updateDate", "sType": "string"},
+					{"data": "name", "sType": "string","orderable": false},
 					{"data": "username", "sType": "string","orderable": false},
 					{"data": "nickName", "sType": "string","orderable": false},
 					{"data": "age", "sType": "string","orderable": false},

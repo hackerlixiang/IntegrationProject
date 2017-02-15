@@ -29,10 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<collection property="childrens" column="id" javaType="ArrayList" ofType="MenuEntity" select="findChildByParentId"/><!-- 关联集合建议采用此种方式，避免N+1问题，可省略 column -->
 </resultMap>
 
-<sql id="sql_count"> SELECT COUNT(m.id) FROM t_menu m </sql>
 <sql id="sql_result"> SELECT m.* FROM t_menu m </sql>
-<sql id="sql_count_select"> SELECT COUNT(m.id) FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id</sql>
-<sql id="sql_page_select"> SELECT m.* FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id</sql>
 
 <!-- ***********************************************************插入操作************************************************************ -->
 	<!--       
@@ -110,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 获取菜单页列表 -->
 	<select id="findPage" parameterType="menuQuery" resultMap="menuMap">
-		<include refid="sql_page_select"/>
+		SELECT m.* FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">
 				m.${key} 
@@ -135,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 获取过滤后的菜单数量 -->
 	<select id="getFilteredCount" parameterType="menuQuery" resultType="Long">
-		<include refid="sql_count_select"/>
+		SELECT COUNT(m.id) FROM t_menu m LEFT JOIN t_menu p ON m.parent_id = p.id
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">
 				m.${key} 
@@ -155,7 +152,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 获取菜单总数量 -->
 	<select id="getCount" parameterType="menuQuery" resultType="Long">
-		<include refid="sql_count"/>
+		 SELECT COUNT(m.id) FROM t_menu m
 	</select>
 	
 <!-- **********************************************修改操作************************************** -->
