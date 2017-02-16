@@ -54,5 +54,14 @@ public interface IBaseService<T extends BaseEntity,Q extends BaseQuery<T>,ID ext
 	 * @return 筛选后的菜单集合
 	 */
 	public Pagination<T> findPage(Q q) throws Exception;
-
+	
+	/**
+	 * 数据验证
+	 * 
+	 * @param object
+	 *            验证对象
+	 * @return 验证结果
+	 */
+	public boolean valid(Object object) throws Exception;
+	
 }

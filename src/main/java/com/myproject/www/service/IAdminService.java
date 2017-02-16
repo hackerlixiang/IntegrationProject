@@ -39,6 +39,13 @@ public interface IAdminService extends IBaseService<AdminEntity, AdminQuery, Lon
 	public Message modify(AdminBean adminBean) throws Exception;
 	
 	/**
+	 * 持久化验证
+	 * @return
+	 * @throws Exception
+	 */
+	public Message persistenceValidate(AdminBean adminBean) throws Exception;
+	
+	/**
 	 * 验证管理员名是否重复
 	 * @param username 需要验证的管理员名
 	 * @param id 需要验证的管理员ID

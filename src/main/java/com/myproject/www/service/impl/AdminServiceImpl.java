@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myproject.www.bean.AdminBean;
 import com.myproject.www.dao.IAdminDao;
 import com.myproject.www.entity.AdminEntity;
+import com.myproject.www.enums.MessageTypeEnum;
 import com.myproject.www.others.Message;
 import com.myproject.www.others.MessageAlias;
 import com.myproject.www.pageQuery.query.AdminQuery;
@@ -122,8 +123,33 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	}
 
 	@Override
+	public Message persistenceValidate(AdminBean adminBean) throws Exception {
+		//管理员Bean验证
+		if(!valid(adminBean)){
+			return Message.getWarningMessage(MessageAlias.ADMIN_PARAM_ERROR);
+		}
+		//管理员属性重复验证
+		if(!validateRepeatUsername(adminBean.getUsername(), null)){
+			return Message.addMessage(MessageTypeEnum.warning,"用户名重复！");
+		}
+		if(!validateRepeatIdCard(adminBean.getIdCard(), null)){
+			return Message.addMessage(MessageTypeEnum.warning,"身份证重复！");
+		}
+		if(!validateRepeatMobile(adminBean.getMobile(), null)){
+			return Message.addMessage(MessageTypeEnum.warning,"手机号码重复！");
+		}
+		if(!validateRepeatEmail(adminBean.getEmail(), null)){
+			return Message.addMessage(MessageTypeEnum.warning,"邮箱地址重复！");
+		}
+		return null;
+	}
+	
+	@Override
 	@Transactional(readOnly=true)
 	public Boolean validateRepeatUsername(String username, Long id) throws Exception {
+		if(StringUtils.isBlank(username)){
+			return true;
+		}
 		AdminEntity pAdmin = adminDao.findAdminByUsername(username);
 		if(pAdmin==null){
 			return true;
@@ -139,6 +165,9 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	@Override
 	@Transactional(readOnly=true)
 	public Boolean validateRepeatIdCard(String idCard, Long id) throws Exception {
+		if(StringUtils.isBlank(idCard)){
+			return true;
+		}
 		AdminEntity pAdmin = adminDao.findAdminByIdCard(idCard);
 		if(pAdmin==null){
 			return true;
@@ -154,6 +183,9 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	@Override
 	@Transactional(readOnly=true)
 	public Boolean validateRepeatEmail(String email, Long id) throws Exception {
+		if(StringUtils.isBlank(email)){
+			return true;
+		}
 		AdminEntity pAdmin = adminDao.findAdminByEmail(email);
 		if(pAdmin==null){
 			return true;
@@ -169,6 +201,9 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminEntity, AdminQuery, L
 	@Override
 	@Transactional(readOnly=true)
 	public Boolean validateRepeatMobile(String mobile, Long id) throws Exception {
+		if(StringUtils.isBlank(mobile)){
+			return true;
+		}
 		AdminEntity pAdmin = adminDao.findAdminByMobile(mobile);
 		if(pAdmin==null){
 			return true;

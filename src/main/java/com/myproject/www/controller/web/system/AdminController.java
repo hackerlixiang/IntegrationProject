@@ -92,14 +92,14 @@ public class AdminController extends BaseSystemController{
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
-	public Message add(AdminBean adminBean,HttpServletRequest request) throws Exception{
-		
+	public synchronized Message add(AdminBean adminBean,HttpServletRequest request) throws Exception{
 		//处理表单参数
 		adminService.perBeforeHandleAdmin(adminBean, request);
 		
-		//管理员Bean验证
-		if(!valid(adminBean)){
-			return Message.getWarningMessage(MessageAlias.ADMIN_PARAM_ERROR);
+		//持久化之前验证
+		Message message = adminService.persistenceValidate(adminBean);
+		if(message!=null){
+			return message;
 		}
 		
 		//添加管理员
@@ -147,9 +147,10 @@ public class AdminController extends BaseSystemController{
 		//处理表单参数
 		adminService.perBeforeHandleAdmin(adminBean, request);
 		
-		//管理员Bean验证
-		if(!valid(adminBean)){
-			return Message.getWarningMessage(MessageAlias.ADMIN_PARAM_ERROR);
+		//持久化之前验证
+		Message message = adminService.persistenceValidate(adminBean);
+		if(message!=null){
+			return message;
 		}
 		
 		//添加管理员

@@ -1,7 +1,12 @@
-/* 为dt表头和底部加上边线，左边线除外 */
+/* 为dt表头和底部加上边线，去除左边线 */
 table.dataTable thead th, table.dataTable thead td,table.dataTable tfoot th, table.dataTable tfoot td{
 	border: 1px solid #ddd;
 	border-left: none;
+}
+
+/* dt没有tfoot时 将底部黑线变成灰色 */
+.dataTables_wrapper.no-footer .dataTables_scrollBody{
+	border-bottom: 1px solid #ddd;
 }
 
 /* 为dt表头和底部第一个单元格添加左边线 */

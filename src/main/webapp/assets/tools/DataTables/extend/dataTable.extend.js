@@ -85,7 +85,7 @@ $.extend( $.fn.dataTable.defaults, {
         "sInfoPostFix": "",
         "sSearch": "搜索:",
         "sUrl": "",
-        "sEmptyTable": "表中数据为空",
+        "sEmptyTable": "暂无数据",
         "sLoadingRecords": "载入中...",
         "sInfoThousands": ",",
         "oPaginate": {
@@ -100,8 +100,8 @@ $.extend( $.fn.dataTable.defaults, {
         }
     },
     "initComplete":function(settings, json) {
-    	console.debug(settings);
-    	console.debug(json);
+//    	console.debug(settings);
+//    	console.debug(json);
     	
     	/**
     	 * 定义每页显示条数的的change方法

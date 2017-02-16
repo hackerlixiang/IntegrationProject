@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="headPortrait" column="head_portrait"/>
 </resultMap>
 
-<sql id="sql_count"> SELECT COUNT(u.id) FROM t_admin u </sql>
-<sql id="sql_result"> SELECT u.* FROM t_admin u </sql>
+<sql id="sql_count"> SELECT COUNT(a.id) FROM t_admin a </sql>
+<sql id="sql_result"> SELECT a.* FROM t_admin a </sql>
 
 	<!--       
 		id：为这个插入操作起的一个名字。
@@ -50,27 +50,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 通过ID获得管理员 -->
 	<select id="findById" parameterType="Long" resultMap="adminMap" >
-		<include refid="sql_result"/> <where> u.id = #{id}</where>
+		<include refid="sql_result"/> <where> a.id = #{id}</where>
 	</select>
 	
 	<!-- 根据用户名获取用户 -->
 	<select id="findAdminByUsername" parameterType="String" resultMap="adminMap">
-		<include refid="sql_result"/> <where> u.username = #{username}</where>
+		<include refid="sql_result"/> <where> a.username = #{username}</where>
 	</select>
 	
 	<!-- 根据身份证号获取用户 -->
 	<select id="findAdminByIdCard" parameterType="String" resultMap="adminMap">
-		<include refid="sql_result"/> <where> u.id_card = #{idCard}</where>
+		<include refid="sql_result"/> <where> a.id_card = #{idCard}</where>
 	</select>
 	
 	<!-- 根据邮箱获取用户 -->
 	<select id="findAdminByEmail" parameterType="String" resultMap="adminMap">
-		<include refid="sql_result"/> <where> u.email = #{email}</where>
+		<include refid="sql_result"/> <where> a.email = #{email}</where>
 	</select>
 	
 	<!-- 根据手机号获取用户 -->
 	<select id="findAdminByMobile" parameterType="String" resultMap="adminMap">
-		<include refid="sql_result"/> <where> u.mobile = #{mobile}</where>
+		<include refid="sql_result"/> <where> a.mobile = #{mobile}</where>
 	</select>
 
 	<!-- 获取菜单页列表 -->
@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="sql_result"/>
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">
-				u.${key} 
+				a.${key} 
 				<foreach collection="map" index="filCond" item="value">
 					<if test="filCond=='eq'"> = #{value} </if>
 					<if test="filCond=='like'"> LIKE CONCAT('%',#{value},'%') </if> 
@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</foreach>
 		</where>
 		<foreach collection="orders" index="key" item="value" open=" ORDER BY " separator=",">
-			u.${key} ${value}
+			a.${key} ${value}
 		</foreach>
 		LIMIT #{start},#{length};
 	</select> 
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="sql_count"/>
 		<where>
 			<foreach collection="querys" index="key" item="map" separator=" and ">
-				u.${key} 
+				a.${key} 
 				<foreach collection="map" index="filCond" item="value">
 					<if test="filCond=='eq'"> = #{value} </if>
 					<if test="filCond=='like'"> LIKE CONCAT('%',#{value},'%') </if> 

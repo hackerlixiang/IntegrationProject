@@ -13,6 +13,7 @@ import com.myproject.www.pageQuery.query.BaseQuery;
 import com.myproject.www.service.IBaseService;
 import com.myproject.www.utils.BeanUtils;
 import com.myproject.www.utils.JsonUtils;
+import com.myproject.www.utils.validate.ValidateUtils;
 
 /**
  * 
@@ -87,5 +88,13 @@ public class BaseServiceImpl<T extends BaseEntity,Q extends BaseQuery<T>,ID exte
 		return pagination;
 	}
 
+	public boolean valid(Object object) throws Exception {
+		try {
+			return ValidateUtils.valid(object);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }
