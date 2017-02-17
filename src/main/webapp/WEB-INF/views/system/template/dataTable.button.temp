@@ -1,7 +1,7 @@
 <script id="buttonTemplate" type="text/template">
 	<div class="dt-buttons" style="margin-bottom:15px;">
-		<div class="btn-group">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<div class="btn-group tool_booton1">
+			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:105px;">
 			    <span>每页<strong>10</strong>条<span>
 			    <span class="caret"></span>
 			</button>
@@ -12,17 +12,24 @@
 				<li><a href="javascript:;" name="changeItem" val="100">每页显示<strong>100</strong>条</a></li>
 			</ul>
 		</div>
-		<button id="export" type="button" class="btn btn-default">
-		 	<span>导出EXCL</span>
-		 	<i class="icon-share-alt"></i>
-		</button>
-		<button id="print" type="button" class="btn btn-default">
-		 	<span>打印列表</span>
-		 	<i class="icon-print"></i>
-		</button>
-		<button id="query" type="button" class="btn btn-default">
-		 	<span>组合查询</span>
-		 	<i class="icon-search"></i>
-		</button>
+		<div class="btn-group tool_booton1">
+			<button id="print" type="button" class="btn btn-default">
+			 	<span>打印列表</span>
+			 	<i class="icon-print"></i>
+			</button>
+		</div>
+		<div class="btn-group tool_booton2">
+			<button id="export" type="button" class="btn btn-default">
+			 	<span>导出EXCL</span>
+			 	<i class="icon-share-alt"></i>
+			</button>
+		</div>
+		<div class="btn-group tool_booton2">
+			<button id="query" type="button" class="btn btn-default">
+			 	<span>组合查询</span>
+			 	<i class="icon-search"></i>
+			</button>
+		</div>
+		
 	</div>
 </script>

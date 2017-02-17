@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>	
-	<%
-		String baseUrl = request.getLocalAddr()+request.getContextPath();
+	<%	
+		String baseUrl = request.getLocalAddr()+":"+request.getLocalPort()+request.getContextPath();
 		response.sendRedirect("http://"+baseUrl+"/system/index/index");
 	%>
 </body>

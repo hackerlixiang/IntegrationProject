@@ -1,2 +1,11 @@
 <script type="text/javascript" src="${baseUrl}/assets/tools/metronic/js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="${baseUrl}/assets/tools/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${baseUrl}/assets/js/iframeheight.js"></script>
+<script type="text/javascript">
+	jQuery(window).resize(function() {  
+		startInit('mainFrame', $(window).height);
+	}); 
+	/* jQuery(document).ready(function() {    
+		 window.setInterval("startInit('mainFrame',"+ $(window).height+");", 500);
+	});*/
+</script> 

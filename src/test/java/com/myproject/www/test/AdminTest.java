@@ -26,15 +26,15 @@ public class AdminTest {
 	
 	@Test
 	public void addTest() throws Exception {
-		for (int i = 20; i < 50; i++) {
+		for (int i = 60; i < 100; i++) {
 			AdminBean userBean = new AdminBean();
-			userBean.setUsername("lx02788"+i);
-			userBean.setPassword(Base64Utils.encode("027681LX".getBytes()));
+			userBean.setUsername("lx02718"+i);
+			userBean.setPassword(Base64Utils.encode("027221LX".getBytes()));
 			userBean.setName("阿萨德");
 			userBean.setNickName("~A屌屌屌A~");
-			userBean.setIdCard("5101241991070349"+i);
-			userBean.setEmail("56518071"+i+"@qq.com");
-			userBean.setMobile("159825545"+i);
+			userBean.setIdCard("5101241991070229"+i);
+			userBean.setEmail("56518121"+i+"@qq.com");
+			userBean.setMobile("159825335"+i);
 			userBean.setRegistIp("192.168.151.22");
 			adminServiceImpl.perBeforeHandleAdmin(userBean, null);
 			if(ValidateUtils.valid(userBean)){
