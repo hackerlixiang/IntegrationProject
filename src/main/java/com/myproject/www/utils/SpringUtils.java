@@ -1,8 +1,14 @@
 package com.myproject.www.utils;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
@@ -19,10 +25,13 @@ import org.springframework.web.servlet.LocaleResolver;
  */
 @Component("springUtils")
 @Lazy(false)
-public final class SpringUtils implements ApplicationContextAware, DisposableBean {
+public final class SpringUtils extends PropertyPlaceholderConfigurer implements ApplicationContextAware, DisposableBean {
 
     /** applicationContext */
     private static ApplicationContext applicationContext;
+    
+    /** properties变量容器 */
+    private static Map<String,String> propertyMap;
 
     /**
      * 不可实例化
@@ -89,4 +98,25 @@ public final class SpringUtils implements ApplicationContextAware, DisposableBea
         String message = SpringUtils.applicationContext.getMessage(code, args, locale);
         return  StringUtils.isBlank(message)?"-":message;
     }
+    
+    /**
+     * 获取properties变量
+     * @param name 参数名
+     * @return
+     */
+    public static Object getProperty(String name) {
+        return propertyMap.get(name);
+    }
+    
+    @Override
+    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
+        super.processProperties(beanFactoryToProcess, props);
+        propertyMap = new HashMap<String, String>();
+        for (Object key : props.keySet()) {
+            String keyStr = key.toString();
+            String value = props.getProperty(keyStr);
+            propertyMap.put(keyStr, value);
+        }
+    }
+
 }

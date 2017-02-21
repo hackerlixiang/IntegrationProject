@@ -36,6 +36,11 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
+	<!-- 配置 代码中获取 properties 参数-->  
+	<bean id="propertyConfigurer" class="com.myproject.www.utils.SpringUtils">
+        <property name="location"><value>classpath:config/properties/setting.properties</value></property>
+    </bean>
+	
 	<!--配置数据源-->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">

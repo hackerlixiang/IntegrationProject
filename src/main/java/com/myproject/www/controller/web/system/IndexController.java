@@ -38,7 +38,6 @@ public class IndexController extends BaseSystemController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) throws Exception{
-		
 		ModelAndView modelAndView = getModelAndView(request);
 		//获取菜单列表
 		List<MenuEntity> menus = new ArrayList<>();

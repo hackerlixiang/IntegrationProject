@@ -2,6 +2,8 @@ package com.myproject.www.listener;
 
 import javax.annotation.Resource;
 
+import net.sf.ehcache.Element;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -10,8 +12,6 @@ import org.springframework.stereotype.Component;
 import com.myproject.www.cache.CacheHandler;
 import com.myproject.www.service.IDataDictionaryItemService;
 import com.myproject.www.service.IMenuService;
-
-import net.sf.ehcache.Element;
 
 /**
  * 初始化监听器
@@ -62,5 +62,5 @@ public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 			e.printStackTrace();
 		}
 	}
-
+	
 }

@@ -26,19 +26,19 @@
 			</a>
 		</li>
 
-		<li>
+		<li class="menugroup">
 			<a href="javascript:;">
 				<i class="icon-th-large"></i> 
 				<span class="title">菜单管理</span>
 			</a>
 			<ul class="sub-menu">
-				<li><a href="${baseUrl}/system/menu/add" target="mainFrame">添加菜单</a></li>
-				<li><a href="${baseUrl}/system/menu/list" target="mainFrame">菜单列表</a></li>
-				<li><a href="${baseUrl}/test" target="mainFrame">菜单列表测试</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/system/menu/add">添加菜单</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/system/menu/list">菜单列表</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/test">菜单列表测试</a></li>
 			</ul>
 		</li>
 		
-		<li class="active">
+		<li class="menugroup">
 			<a href="javascript:;">
 				<i class="icon-th-large"></i> 
 				<span class="title">用户管理</span>
@@ -46,13 +46,13 @@
 				<span class="arrow open"></span>
 			</a>
 			<ul class="sub-menu">
-				<li><a href="${baseUrl}/system/admin/add" target="mainFrame">添加用户</a></li>
-				<li class="active"><a href="${baseUrl}/system/admin/list" target="mainFrame">用户列表</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/system/admin/add">添加用户</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/system/admin/list">用户列表</a></li>
 			</ul>
 		</li>
 		
 		[#list menus as menu]
-		<li>
+		<li class="menugroup">
 			<a href="javascript:;">
 				<i class="${menu.icon!}"></i> 
 				<span class="title">${menu.name}</span>
@@ -60,7 +60,7 @@
 			[#if menu.childrens?size>0]
 			<ul class="sub-menu">
 				[#list menu.childrens as chilren]
-				<li><a href="${baseUrl}/system/menu/add" target="mainFrame">${chilren.name}</a></li>
+				<li><a href="javascript:;" path="${baseUrl}/system/menu/add" [#--target="mainFrame"--] >${chilren.name}</a></li>
 				[/#list]
 			</ul>
 			[/#if]

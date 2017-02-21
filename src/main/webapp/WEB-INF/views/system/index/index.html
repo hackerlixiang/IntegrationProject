@@ -60,7 +60,7 @@
 				[#-- 主页面开始 --] 
 				<div class="row-fluid">
 					<div class="span12">
-						<iframe src="${baseUrl}/system/index/main" name="mainFrame" id="mainFrame" onload=" window.setTimeout('startInit(\'mainFrame\',$(window).height);', 500);" style="border:0px;width:100%;" frameborder="0" scrolling="no"></iframe>
+						<iframe src="${baseUrl}/system/index/main" name="mainFrame" id="mainFrame" onload="window.setTimeout('startInit(\'mainFrame\',$(window).height);', 500);" style="border:0px;width:100%;" frameborder="0" scrolling="no"></iframe>
 					</div>
 				</div>
 				[#-- 主页面结束 --] 
@@ -91,6 +91,22 @@
 	<script type="text/javascript" src="${baseUrl}/assets/js/iframeheight.js"></script>      
 
 	<script>
+		$(".sub-menu").find("li").find("a").click(function(){
+			var path = $(this).attr("path");
+			$("#mainFrame").attr("src",path).ready();
+			
+			$(".menugroup").removeClass("active");
+			$(".sub-menu").find(".active").removeClass("active");
+			$(this).parent("li").addClass("active");
+			$(this).closest(".menugroup").addClass("active");
+			
+			$("#nav").find(".clear").remove();
+			var mn = $(this).closest(".menugroup").find(".title").text();
+			var menuLv1 =  "<li class='clear'><a href='javascript:;'>"+mn+"</a></li>";
+			$("#nav").append(menuLv1);
+			var menuLv2 =  "<li class='clear'><i class='icon-angle-right clear'></i><a href='"+path+"'></a>"+$(this).text()+"</li>";
+			$("#nav").append(menuLv2);
+		});
 		jQuery(window).resize(function() {    
 			startInit('mainFrame', $(window).height);
 		});
