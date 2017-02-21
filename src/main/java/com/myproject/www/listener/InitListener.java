@@ -38,6 +38,7 @@ public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 		menusAddCache();
 		//将数据字典-性别 加入缓存
 		sexAddCache();
+		
 //		System.out.println(cacheHandler.getDiskStorePath());
 //		System.out.println(cacheHandler.getCacheSize());
 	}

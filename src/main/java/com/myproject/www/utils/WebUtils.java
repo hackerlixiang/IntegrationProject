@@ -37,8 +37,6 @@ public final class WebUtils {
     /**
      * 添加Cookie
      * 
-     * @param request
-     *            HttpServletRequest
      * @param response
      *            HttpServletResponse
      * @param name
@@ -54,13 +52,11 @@ public final class WebUtils {
      * @param secure
      *            是否启用加密
      */
-    public static void addCookie(HttpServletRequest request, HttpServletResponse response, String name, String value,
+    public static void addCookie(HttpServletResponse response, String name, String value,
             Integer maxAge, String path, String domain, Boolean secure) {
 
-        Assert.notNull(request);
         Assert.notNull(response);
         Assert.hasText(name);
-
         try {
             name = URLEncoder.encode(name, "UTF-8");
             value = URLEncoder.encode(value, "UTF-8");
