@@ -100,7 +100,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 //        saveRequestAndRedirectToLogin(request, response);
 //        return false;
     	
-    	return true;
+    	return false;
     }
 
     @Override

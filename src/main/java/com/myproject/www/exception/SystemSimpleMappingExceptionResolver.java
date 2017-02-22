@@ -26,8 +26,7 @@ public class SystemSimpleMappingExceptionResolver implements HandlerExceptionRes
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request,HttpServletResponse response, Object handler, Exception exception) {
 		// 判断是否ajax请求
-        if (!(request.getHeader("accept").indexOf("application/json") > -1 
-        		|| (request.getHeader("X-Requested-With") != null 
+        if (!(request.getHeader("accept").indexOf("application/json") > -1|| (request.getHeader("X-Requested-With") != null 
         		&& request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1))) {
             // 如果不是ajax
             // 为安全起见，只有业务异常我们对前端可见，否则否则统一归为系统异常
@@ -42,7 +41,7 @@ public class SystemSimpleMappingExceptionResolver implements HandlerExceptionRes
             System.out.println(exception.getMessage());
             
             //对于非ajax请求，我们都统一跳转到500页面
-            return new ModelAndView("/system/error/404").addObject("message", message);
+            return new ModelAndView("/system/error/500").addObject("message", message);
         } else {
             // 如果是ajax请求，JSON格式返回
             try {

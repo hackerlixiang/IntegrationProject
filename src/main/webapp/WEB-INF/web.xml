@@ -56,7 +56,6 @@
 	<servlet-mapping>
 	  <servlet-name>default</servlet-name>
 	  <url-pattern>/assets/*</url-pattern>
-	  <url-pattern>/WEB-INF/views/system/error/*</url-pattern>
 	  <url-pattern>/index.html</url-pattern>
 	</servlet-mapping>
   
@@ -102,7 +101,7 @@
 	<!-- 错误页面 -->
 	<error-page>
 	  <error-code>404</error-code>
-	  <location>/WEB-INF/views/system/error/404.html</location>
+	  <location>/404.jsp</location>
 	</error-page>
   
 </web-app>

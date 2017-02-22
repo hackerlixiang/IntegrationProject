@@ -32,6 +32,7 @@
 	<bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
+	<!-- Springmvc 统一异常处理器 -->
 	<bean id="exceptionResolver" class="com.myproject.www.exception.SystemSimpleMappingExceptionResolver"></bean>
 
 	<!-- 拦截器 -->

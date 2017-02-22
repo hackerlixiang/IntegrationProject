@@ -63,6 +63,8 @@
 				<!-- anon 没有参数，表示可以匿名使用 -->
 				<!-- authc 表示需要认证才能使用，没有参数 -->
 				<!-- perms 参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割 -->
+				/system/login/login = anon
+				/system/index/** = authc
 				<!-- /admin/captcha = anon
 				/admin/login = authc
 				/admin/logout = logout

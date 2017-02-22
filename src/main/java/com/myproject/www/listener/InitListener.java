@@ -34,13 +34,15 @@ public class InitListener implements ApplicationListener<ContextRefreshedEvent>{
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		// 将菜单加入缓存
-		menusAddCache();
-		//将数据字典-性别 加入缓存
-		sexAddCache();
-		
-//		System.out.println(cacheHandler.getDiskStorePath());
-//		System.out.println(cacheHandler.getCacheSize());
+		if(event.getApplicationContext().getParent() == null){//处理ApplicationListener被执行两次
+			// 将菜单加入缓存
+			menusAddCache();
+			//将数据字典-性别 加入缓存
+			sexAddCache();
+			System.out.println("1123");
+//			System.out.println(cacheHandler.getDiskStorePath());
+//			System.out.println(cacheHandler.getCacheSize());
+		}
 	}
 	
 	// 将菜单加入缓存

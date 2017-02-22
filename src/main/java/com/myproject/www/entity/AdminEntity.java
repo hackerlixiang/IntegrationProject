@@ -1,9 +1,6 @@
 package com.myproject.www.entity;
 
 import java.util.Date;
-import java.util.List;
-
-import net.sf.ehcache.Element;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myproject.www.utils.DictionaryUtils;
